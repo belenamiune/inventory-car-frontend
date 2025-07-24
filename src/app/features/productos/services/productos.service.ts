@@ -15,6 +15,11 @@ export class ProductosService {
     return this.http.get<Producto[]>(this.baseUrl);
   }
 
+  getById(id: string): Observable<Producto> {
+  return this.http.get<Producto>(`${this.baseUrl}/${id}`);
+    }
+
+
   getPaginated(limit = 10, offset = 0, nombre?: string, categoria?: string) {
     const params: any = {
         limit,

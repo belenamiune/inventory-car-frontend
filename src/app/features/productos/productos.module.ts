@@ -18,12 +18,17 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DetalleComponent } from './pages/detalle/detalle.component';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
     ProductosComponent,
     ListadoComponent,
-    ProductoFormComponent
+    ProductoFormComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +44,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DialogModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TagModule,
+    CardModule,
+    PanelModule
   ],
   providers: [ConfirmationService]
 })

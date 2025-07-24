@@ -1,0 +1,50 @@
+<div *ngIf="producto$ | async as producto" class="p-grid p-justify-center p-mt-4">
+  <div class="p-col-12 p-md-8">
+    <p-card header="{{ producto.nombre }}">
+      <div class="p-grid p-ai-center">
+        <div class="p-col-12 p-md-4 p-text-center">
+          <img
+            [src]="producto.imagenUrl || 'https://via.placeholder.com/150'"
+            alt="imagen"
+            style="max-width: 100%; border-radius: 8px"
+          />
+        </div>
+
+        <div class="p-col-12 p-md-8">
+          <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+          <p><strong>Stock:</strong>
+            <span
+              class="p-tag"
+              [class]="producto.stock < 5 ? 'p-tag-danger' : 'p-tag-success'"
+              >{{ producto.stock }} unidades</span
+            >
+          </p>
+          <p><strong>Categorías:</strong></p>
+          <ul>
+           <li *ngFor="let cat of producto.categorias">{{ cat.nombre }}</li>
+          </ul>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- Simulación de historial -->
+    <p-panel header="Historial de Movimientos" class="p-mt-4">
+      <p-table [value]="movimientos">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Fecha</th>
+            <th>Movimiento</th>
+            <th>Cantidad</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-movimiento>
+          <tr>
+            <td>{{ movimiento.fecha }}</td>
+            <td>{{ movimiento.tipo }}</td>
+            <td>{{ movimiento.cantidad }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
+</div>
