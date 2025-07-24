@@ -1,0 +1,93 @@
+<div class="p-grid p-ai-end p-mb-3">
+  <div class="p-col-12 p-md-4">
+    <label for="nombre">Buscar por nombre</label>
+    <div class="p-col-12 p-md-4">
+    <label for="categoria">Categoría</label>
+    <p-dropdown
+        [options]="categorias"
+        optionLabel="nombre"
+        optionValue="_id"
+        [(ngModel)]="categoria"
+        placeholder="Seleccionar categoría"
+        inputId="categoria"
+        [showClear]="true"
+    ></p-dropdown>
+    </div>
+  </div>
+
+  <div class="p-col-12 p-md-4">
+    <label for="categoria">Categoría (ID)</label>
+    <input id="categoria" type="text" pInputText [(ngModel)]="categoria" />
+    <!-- Más adelante lo cambiamos por un dropdown bonito 😉 -->
+  </div>
+
+  <div class="p-col-12 p-md-4">
+    <button pButton type="button" label="Buscar" (click)="onBuscar()" class="p-mt-2"></button>
+  </div>
+</div>
+
+<p-table
+  [value]="(productos$ | async) || [] " 
+  [paginator]="true"
+  [rows]="rows"
+  [totalRecords]="(total$ | async) || 0"
+  [lazy]="true"
+  (onLazyLoad)="onPageChange($event)"
+  [loading]="(loading$ | async) || false"
+  responsiveLayout="scroll"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Stock</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-producto>
+    <tr>
+      <td>
+        <img
+          [src]="producto.imagenUrl || 'https://via.placeholder.com/50'"
+          alt="img"
+          width="50"
+        />
+      </td>
+      <td>{{ producto.nombre }}</td>
+      <td>$ {{ producto.precio }}</td>
+      <td>{{ producto.stock }}</td>
+      <td class="p-text-center">
+  <button
+    pButton
+    icon="pi pi-pencil"
+    class="p-button-sm p-button-text p-mr-2"
+    (click)="abrirEdicion(producto)"
+  ></button>
+
+  <button
+    pButton
+    icon="pi pi-trash"
+    class="p-button-sm p-button-text p-button-danger"
+    (click)="confirmarEliminar(producto)"
+  ></button>
+</td>
+
+      <td>
+    <button pButton icon="pi pi-pencil" (click)="abrirEdicion(producto)" class="p-button-sm p-button-text"></button>
+    </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- Botón para agregar -->
+<button pButton icon="pi pi-plus" label="Nuevo" (click)="abrirNuevo()" class="p-mb-3"></button>
+<p-confirmDialog></p-confirmDialog>
+<!-- Formulario modal -->
+<app-producto-form
+  [visible]="modalVisible"
+  [categorias]="categorias"
+  [producto]="productoSeleccionado"
+  (cerrar)="cerrarModal()"
+  (guardar)="guardarProducto($event)"
+></app-producto-form>

@@ -1,0 +1,70 @@
+<div class="p-grid p-justify-center p-mt-4">
+  <div class="p-col-12 p-md-4">
+    <p-card header="Total de Productos" class="p-shadow-4">
+      <ng-container *ngIf="total$ | async as total">
+        <h2>{{ total }}</h2>
+      </ng-container>
+    </p-card>
+  </div>
+
+  <div class="p-col-12 p-md-4">
+    <p-card header="Stock Bajo (< 5)" class="p-shadow-4 p-card-warning">
+      <ng-container *ngIf="stockBajo$ | async as bajo">
+        <h2>{{ bajo }}</h2>
+      </ng-container>
+    </p-card>
+  </div>
+
+  <div class="p-col-12 p-md-4">
+    <p-card header="Valor Total Inventario" class="p-shadow-4 p-card-success">
+      <ng-container *ngIf="valorInventario$ | async as valor">
+        <h2>$ {{ valor | number:'1.0-0' }}</h2>
+      </ng-container>
+    </p-card>
+  </div>
+</div>
+
+<div class="p-mt-4 p-text-center" *ngIf="loading$ | async">
+  <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"></p-progressSpinner>
+</div>
+
+ <p-messages 
+    *ngIf="(error$ | async) as error"
+    [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
+    [closable]="true"
+ ></p-messages>
+<div class="p-grid p-justify-center p-mt-4">
+  <div class="p-col-12 p-md-4">
+    <p-card header="Total de Productos" class="p-shadow-4">
+      <ng-container *ngIf="total$ | async as total">
+        <h2>{{ total }}</h2>
+      </ng-container>
+    </p-card>
+  </div>
+
+  <div class="p-col-12 p-md-4">
+    <p-card header="Stock Bajo (< 5)" class="p-shadow-4 p-card-warning">
+      <ng-container *ngIf="stockBajo$ | async as bajo">
+        <h2>{{ bajo }}</h2>
+      </ng-container>
+    </p-card>
+  </div>
+
+  <div class="p-col-12 p-md-4">
+    <p-card header="Valor Total Inventario" class="p-shadow-4 p-card-success">
+      <ng-container *ngIf="valorInventario$ | async as valor">
+        <h2>$ {{ valor | number:'1.0-0' }}</h2>
+      </ng-container>
+    </p-card>
+  </div>
+</div>
+
+<div class="p-mt-4 p-text-center" *ngIf="loading$ | async">
+  <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"></p-progressSpinner>
+</div>
+
+ <p-messages 
+    *ngIf="(error$ | async) as error"
+    [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
+    [closable]="true"
+ ></p-messages>

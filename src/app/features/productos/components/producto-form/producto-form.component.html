@@ -1,0 +1,36 @@
+<p-dialog
+  header="{{ producto ? 'Editar Producto' : 'Nuevo Producto' }}"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  (onHide)="onHide()"
+>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" pInputText formControlName="nombre" />
+
+      <label for="precio" class="p-mt-2">Precio</label>
+      <input type="number" pInputText formControlName="precio" />
+
+      <label for="stock" class="p-mt-2">Stock</label>
+      <input type="number" pInputText formControlName="stock" />
+
+      <label for="imagenUrl" class="p-mt-2">URL de imagen</label>
+      <input id="imagenUrl" pInputText formControlName="imagenUrl" />
+
+      <label for="categorias" class="p-mt-2">Categorías</label>
+      <p-multiSelect
+        formControlName="categorias"
+        [options]="categorias"
+        optionLabel="nombre"
+        optionValue="_id"
+        placeholder="Seleccionar..."
+      ></p-multiSelect>
+    </div>
+
+    <div class="p-mt-3 p-text-right">
+      <button pButton label="Guardar" type="submit" [disabled]="form.invalid"></button>
+    </div>
+  </form>
+</p-dialog>
