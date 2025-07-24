@@ -13,24 +13,25 @@ export class ProductosEffects {
 
   loadProductos$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProductosActions.loadProductos),
-      mergeMap(() =>
+        ofType(ProductosActions.loadProductos),
+        mergeMap(() =>
         this.productosService.getAll().pipe(
-          map((productos) =>
+            map((response) =>
             ProductosActions.loadProductosSuccess({
-                productos,
-                total: 0
+                productos: response.data,
+                total: response.total
             })
-          ),
-          catchError((error) =>
+            ),
+            catchError((error) =>
             of(ProductosActions.loadProductosFailure({ error: error.message }))
-          )
+            )
         )
-      )
+        )
     )
-  );
+    );
 
- loadPaginated$ = createEffect(() =>
+
+    loadPaginated$ = createEffect(() =>
     this.actions$.pipe(
         ofType(ProductosActions.loadPaginatedProductos),
         mergeMap(({ limit, offset, nombre, categoria }) =>
@@ -42,11 +43,11 @@ export class ProductosEffects {
             })
             ),
             catchError((error) =>
-                of(ProductosActions.loadProductosFailure({ error: error.message }))
-             )
+            of(ProductosActions.loadProductosFailure({ error: error.message }))
             )
-         )
         )
+        )
+    )
     );
 
  createProducto$ = createEffect(() =>

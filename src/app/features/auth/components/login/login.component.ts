@@ -4,9 +4,11 @@ import { Store } from '@ngrx/store';
 import { login } from '../../../../store/auth/auth.actions';
 import { selectAuthLoading, selectAuthError } from '../../../../store/auth/auth.selector';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
+  styleUrls: ["./login.component.scss"],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -18,7 +20,7 @@ export class LoginComponent {
     password: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store, private router: Router) {}
 
   onSubmit() {
     if (this.loginForm.invalid) return;
@@ -29,4 +31,9 @@ export class LoginComponent {
     };
     this.store.dispatch(login({ credentials }));
   }
+
+    irARegistro() {
+    this.router.navigate(['/registro']);
+    }
+
 }

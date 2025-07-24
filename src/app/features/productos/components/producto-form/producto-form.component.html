@@ -2,35 +2,68 @@
   header="{{ producto ? 'Editar Producto' : 'Nuevo Producto' }}"
   [(visible)]="visible"
   [modal]="true"
-  [style]="{ width: '400px' }"
+  [style]="{ width: '100%', maxWidth: '500px' }"
+  [dismissableMask]="true"
   (onHide)="onHide()"
+  class="rounded-xl animate-fade-in"
 >
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="p-fluid">
-      <label for="nombre">Nombre</label>
-      <input id="nombre" pInputText formControlName="nombre" />
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
+    <!-- Nombre -->
+    <div class="field">
+      <label for="nombre" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
+      <input id="nombre" pInputText formControlName="nombre" class="w-full" />
+    </div>
 
-      <label for="precio" class="p-mt-2">Precio</label>
-      <input type="number" pInputText formControlName="precio" />
+    <!-- Precio -->
+    <div class="field mt-3">
+      <label for="precio" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Precio</label>
+      <input id="precio" type="number" pInputText formControlName="precio" class="w-full" />
+    </div>
 
-      <label for="stock" class="p-mt-2">Stock</label>
-      <input type="number" pInputText formControlName="stock" />
+    <!-- Stock -->
+    <div class="field mt-3">
+      <label for="stock" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Stock</label>
+      <input id="stock" type="number" pInputText formControlName="stock" class="w-full" />
+    </div>
 
-      <label for="imagenUrl" class="p-mt-2">URL de imagen</label>
-      <input id="imagenUrl" pInputText formControlName="imagenUrl" />
+    <!-- Imagen -->
+    <div class="field mt-3">
+      <label for="imagenUrl" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">URL de Imagen</label>
+      <input id="imagenUrl" pInputText formControlName="imagenUrl" class="w-full" />
+    </div>
 
-      <label for="categorias" class="p-mt-2">Categorías</label>
+    <!-- Categorías -->
+    <div class="field mt-3">
+      <label for="categorias" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Categorías</label>
       <p-multiSelect
         formControlName="categorias"
         [options]="categorias"
         optionLabel="nombre"
         optionValue="_id"
         placeholder="Seleccionar..."
+        class="w-full"
       ></p-multiSelect>
     </div>
 
-    <div class="p-mt-3 p-text-right">
-      <button pButton label="Guardar" type="submit" [disabled]="form.invalid"></button>
-    </div>
+    <!-- Footer -->
+    <div class="mt-4 flex justify-end gap-2">
+  <!-- Botón cancelar -->
+  <button
+    pButton
+    type="button"
+    label="Cancelar"
+    class="p-button-outlined p-button-secondary"
+    (click)="onHide()"
+  > </button>
+
+  <!-- Botón guardar (verde) -->
+  <button
+    pButton
+    label="Guardar"
+    type="submit"
+    [disabled]="form.invalid"
+    class="p-button-success"
+  > </button>
+</div>
   </form>
 </p-dialog>

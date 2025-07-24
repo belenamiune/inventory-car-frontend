@@ -81,10 +81,13 @@ guardarProducto(producto: Producto) {
 confirmarEliminar(producto: Producto) {
   this.confirmationService.confirm({
     message: `¿Estás segura de eliminar "${producto.nombre}"?`,
-    acceptLabel: 'Sí',
-    rejectLabel: 'No',
+    acceptLabel: 'Eliminar',
+    rejectLabel: 'Cancelar',
     header: 'Confirmar eliminación',
     icon: 'pi pi-exclamation-triangle',
+    
+  acceptButtonStyleClass: 'p-button-danger',
+  rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
     accept: () => {
       this.store.dispatch(deleteProducto({ id: producto._id }));
     },

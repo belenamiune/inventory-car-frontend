@@ -1,70 +1,121 @@
-<div class="p-grid p-justify-center p-mt-4">
-  <div class="p-col-12 p-md-4">
-    <p-card header="Total de Productos" class="p-shadow-4">
-      <ng-container *ngIf="total$ | async as total">
-        <h2>{{ total }}</h2>
-      </ng-container>
-    </p-card>
+<div class="flex flex-col md:flex-row mt-4 px-3 md:px-5 gap-4">
+  <!-- Panel principal -->
+  <div class="w-full md:w-3/4 flex flex-col gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Card: Total Productos -->
+      <p-card class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in">
+        <div class="flex items-center justify-between p-4">
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 m-0">Total de Productos</p>
+            <h2 class="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 m-0">
+              {{ total$ | async }}
+              <span class="text-sm text-green-500 ml-2">↑ 5%</span>
+            </h2>
+          </div>
+          <div class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-2">
+            <i class="pi pi-box text-xl text-indigo-600 dark:text-indigo-300"></i>
+          </div>
+        </div>
+      </p-card>
+
+      <!-- Card: Stock Bajo -->
+      <p-card class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in delay-100">
+        <div class="flex items-center justify-between p-4">
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 m-0">Stock Bajo (&lt; 5)</p>
+            <h2 class="text-3xl font-semibold text-orange-500 m-0">
+              {{ stockBajo$ | async }}
+              <span class="text-sm text-red-400 ml-2">↓ 2%</span>
+            </h2>
+          </div>
+          <div class="bg-orange-100 dark:bg-orange-900 rounded-full p-2">
+            <i class="pi pi-exclamation-triangle text-xl text-orange-500"></i>
+          </div>
+        </div>
+      </p-card>
+
+      <!-- Card: Valor Inventario -->
+      <p-card class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in delay-200">
+        <div class="flex items-center justify-between p-4">
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 m-0">Valor Inventario</p>
+            <h2 class="text-3xl font-semibold text-green-600 dark:text-green-400 m-0">
+              $ {{ valorInventario$ | async | number:'1.0-0' }}
+              <span class="text-sm text-green-500 ml-2">↑ 3%</span>
+            </h2>
+          </div>
+          <div class="bg-green-100 dark:bg-green-900 rounded-full p-2">
+            <i class="pi pi-dollar text-xl text-green-600 dark:text-green-300"></i>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Spinner de carga -->
+    <div *ngIf="loading$ | async" class="flex justify-center mt-5">
+      <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+    </div>
+
+    <!-- Mensaje de error -->
+    <p-messages
+      *ngIf="(error$ | async) as error"
+      [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
+      [closable]="true"
+      class="mt-3"
+    ></p-messages>
   </div>
 
-  <div class="p-col-12 p-md-4">
-    <p-card header="Stock Bajo (< 5)" class="p-shadow-4 p-card-warning">
-      <ng-container *ngIf="stockBajo$ | async as bajo">
-        <h2>{{ bajo }}</h2>
-      </ng-container>
-    </p-card>
-  </div>
+  <!-- Panel lateral de Resumen -->
+<div class="w-full md:w-1/4">
+  <p-card class="shadow-lg rounded-xl animate-fade-in delay-300">
+    <ng-template pTemplate="content">
+      <div class="p-4 flex flex-col gap-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Resumen</h3>
 
-  <div class="p-col-12 p-md-4">
-    <p-card header="Valor Total Inventario" class="p-shadow-4 p-card-success">
-      <ng-container *ngIf="valorInventario$ | async as valor">
-        <h2>$ {{ valor | number:'1.0-0' }}</h2>
-      </ng-container>
-    </p-card>
-  </div>
+        <!-- Item de resumen -->
+        <div class="flex items-center justify-between border-b pb-2">
+          <div class="flex items-center gap-2">
+            <i class="pi pi-box text-indigo-500 text-lg"></i>
+            <span class="text-sm text-gray-500 dark:text-gray-300">SKU Total</span>
+          </div>
+          <span class="text-base font-bold text-indigo-600 dark:text-indigo-300">
+            {{ total$ | async }}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between border-b pb-2">
+          <div class="flex items-center gap-2">
+            <i class="pi pi-bookmark text-purple-500 text-lg"></i>
+            <span class="text-sm text-gray-500 dark:text-gray-300">Productos Reservados</span>
+          </div>
+          <span class="text-base font-bold text-purple-600 dark:text-purple-300">234</span>
+        </div>
+
+        <div class="flex items-center justify-between pb-1">
+          <div class="flex items-center gap-2">
+            <i class="pi pi-exclamation-circle text-red-500 text-lg"></i>
+            <span class="text-sm text-gray-500 dark:text-gray-300">Stock con Problemas</span>
+          </div>
+          <span class="text-base font-bold text-red-500">2</span>
+        </div>
+
+        <!-- Categorías -->
+        <div class="mt-4">
+          <p class="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Categorías</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="p-tag p-tag-rounded bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
+              <i class="pi pi-car mr-1"></i> Lubricantes
+            </span>
+            <span class="p-tag p-tag-rounded bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
+              <i class="pi pi-filter mr-1"></i> Filtros
+            </span>
+            <span class="p-tag p-tag-rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
+              <i class="pi pi-cog mr-1"></i> Repuestos
+            </span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
 </div>
-
-<div class="p-mt-4 p-text-center" *ngIf="loading$ | async">
-  <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"></p-progressSpinner>
 </div>
-
- <p-messages 
-    *ngIf="(error$ | async) as error"
-    [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
-    [closable]="true"
- ></p-messages>
-<div class="p-grid p-justify-center p-mt-4">
-  <div class="p-col-12 p-md-4">
-    <p-card header="Total de Productos" class="p-shadow-4">
-      <ng-container *ngIf="total$ | async as total">
-        <h2>{{ total }}</h2>
-      </ng-container>
-    </p-card>
-  </div>
-
-  <div class="p-col-12 p-md-4">
-    <p-card header="Stock Bajo (< 5)" class="p-shadow-4 p-card-warning">
-      <ng-container *ngIf="stockBajo$ | async as bajo">
-        <h2>{{ bajo }}</h2>
-      </ng-container>
-    </p-card>
-  </div>
-
-  <div class="p-col-12 p-md-4">
-    <p-card header="Valor Total Inventario" class="p-shadow-4 p-card-success">
-      <ng-container *ngIf="valorInventario$ | async as valor">
-        <h2>$ {{ valor | number:'1.0-0' }}</h2>
-      </ng-container>
-    </p-card>
-  </div>
-</div>
-
-<div class="p-mt-4 p-text-center" *ngIf="loading$ | async">
-  <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"></p-progressSpinner>
-</div>
-
- <p-messages 
-    *ngIf="(error$ | async) as error"
-    [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
-    [closable]="true"
- ></p-messages>

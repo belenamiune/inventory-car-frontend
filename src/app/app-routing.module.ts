@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { RegisterComponent } from './features/auth/components/register/register.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
       ),
   },
   { path: 'productos', loadChildren: () => import('./features/productos/productos.module').then(m => m.ProductosModule) },
+  { path: 'categorias', loadChildren: () => import('./features/categorias/categorias.module').then(m => m.CategoriasModule) },
+  {
+    path: 'registro', component: RegisterComponent},
   {
     path: '**',
     redirectTo: 'auth/login',

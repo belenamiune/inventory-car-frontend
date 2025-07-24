@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { register } from '../../../../store/auth/auth.actions';
 import { selectAuthLoading, selectAuthError } from '../../../../store/auth/auth.selector';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,20 +14,24 @@ export class RegisterComponent {
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
   error$: Observable<string | null> = this.store.select(selectAuthError);
 
-  loginForm = this.fb.group({
+  registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
-  });
+    password: ['', Validators.required],
+    });
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store, private router: Router) {}
 
   onSubmit() {
-    if (this.loginForm.invalid) return;
+    if (this.registerForm.invalid) return;
 
     const credentials = {
-        email: this.loginForm.get('email')?.value || '',
-        password: this.loginForm.get('password')?.value || '',
+        email: this.registerForm.get('email')?.value || '',
+        password: this.registerForm.get('password')?.value || '',
     };
     this.store.dispatch(register({ credentials }));
   }
+
+    irALogin() {
+        this.router.navigate(['auth/login']);
+    }
 }

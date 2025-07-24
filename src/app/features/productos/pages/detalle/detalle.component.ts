@@ -36,7 +36,7 @@ export class DetalleComponent implements OnInit {
             const encontrado = productos.find((p) => p._id === id);
             return encontrado
               ? of(encontrado)
-              : this.productosService.getById(id); // fallback
+              : this.productosService.getById(id); 
           })
         );
       })

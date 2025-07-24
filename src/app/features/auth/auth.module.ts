@@ -12,7 +12,9 @@ import { authReducer } from 'src/app/store/auth/auth.reducer';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageModule } from 'primeng/message'; 
-import { MessagesModule } from 'primeng/messages'; 
+import { MessagesModule } from 'primeng/messages';
+import { CardModule } from "primeng/card"; 
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { MessagesModule } from 'primeng/messages';
     AuthRoutingModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
-    MessageModule, 
+    MessageModule,
     MessagesModule,
+    ButtonModule,
     StoreModule.forFeature('auth', authReducer),
-    EffectsModule.forFeature([AuthEffects],)
-  ],
+    EffectsModule.forFeature([AuthEffects]),
+    CardModule
+],
   providers: [AuthService]
 })
 export class AuthModule { }

@@ -19,9 +19,10 @@ export class DashboardComponent implements OnInit {
   stockBajo$: Observable<number> = this.store.select(selectStockBajo);
   valorInventario$: Observable<number> = this.store.select(selectValorInventario);
   loading$: Observable<boolean> = this.store.select(selectProductosLoading);
-  error$: Observable<string | null> = this.store.select(
-    selectProductosState,
-  ).pipe(map((s) => s.error));
+  error$: Observable<string | null> = this.store
+    .select(selectProductosState)
+    .pipe(map(s => s.error));
+
 
   constructor(private store: Store) {}
 

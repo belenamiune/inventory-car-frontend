@@ -1,93 +1,126 @@
-<div class="p-grid p-ai-end p-mb-3">
-  <div class="p-col-12 p-md-4">
-    <label for="nombre">Buscar por nombre</label>
-    <div class="p-col-12 p-md-4">
-    <label for="categoria">Categoría</label>
+<div class="px-4 sm:px-6 md:px-10 py-6">
+  <!-- TODO el contenido actual va acá -->
+<!-- Filtros + Botón "Nuevo" -->
+<div class="grid gap-3 md:flex md:justify-between md:items-end mb-4 animate-fade-in">
+  <!-- Grupo de Filtros -->
+  <div class="grid gap-3 grid-cols-1 sm:grid-cols-2 md:flex md:flex-row md:gap-3 w-full">
+    <!-- Buscar por nombre -->
+    <span class="p-input-icon-left w-full md:w-60">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="nombre"
+        placeholder="Buscar por nombre"
+        class="w-full"
+      />
+    </span>
+
+    <!-- Dropdown categoría -->
     <p-dropdown
-        [options]="categorias"
-        optionLabel="nombre"
-        optionValue="_id"
-        [(ngModel)]="categoria"
-        placeholder="Seleccionar categoría"
-        inputId="categoria"
-        [showClear]="true"
+      class="w-full md:w-52"
+      [options]="categorias"
+      optionLabel="nombre"
+      optionValue="_id"
+      [(ngModel)]="categoria"
+      placeholder="Categoría"
+      [showClear]="true"
     ></p-dropdown>
-    </div>
+
+    <!-- Botón Buscar -->
+    <button
+      pButton
+      type="button"
+      icon="pi pi-filter"
+      label="Buscar"
+      class="p-button-outlined w-full md:w-auto"
+      (click)="onBuscar()"
+    ></button>
   </div>
 
-  <div class="p-col-12 p-md-4">
-    <label for="categoria">Categoría (ID)</label>
-    <input id="categoria" type="text" pInputText [(ngModel)]="categoria" />
-    <!-- Más adelante lo cambiamos por un dropdown bonito 😉 -->
-  </div>
-
-  <div class="p-col-12 p-md-4">
-    <button pButton type="button" label="Buscar" (click)="onBuscar()" class="p-mt-2"></button>
+  <!-- Botón Nuevo -->
+  <div class="w-full md:w-auto">
+    <button
+      pButton
+      icon="pi pi-plus"
+      label="Nuevo"
+      class="p-button-primary w-full md:w-auto"
+      (click)="abrirNuevo()"
+    ></button>
   </div>
 </div>
 
-<p-table
-  [value]="(productos$ | async) || [] " 
-  [paginator]="true"
-  [rows]="rows"
-  [totalRecords]="(total$ | async) || 0"
-  [lazy]="true"
-  (onLazyLoad)="onPageChange($event)"
-  [loading]="(loading$ | async) || false"
-  responsiveLayout="scroll"
->
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Imagen</th>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Stock</th>
-    </tr>
-  </ng-template>
+<!-- Tabla de productos -->
+ <div class="mt-4">
+    <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-5">Listado de Productos</h2>
+    <p-table 
+    class="animate-fade-in min-w-full mt-4"
+    [value]="(productos$ | async) || []"
+    [paginator]="true"
+    [rows]="rows"
+    [totalRecords]="(total$ | async) || 0"
+    [lazy]="true"
+    (onLazyLoad)="onPageChange($event)"
+    [loading]="(loading$ | async) || false"
+    responsiveLayout="scroll"
+    scrollHeight="flex"
+    >
+    
+    <ng-template pTemplate="header">
+        <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th class="text-center">Acciones</th>
+        </tr>
+    </ng-template>
 
-  <ng-template pTemplate="body" let-producto>
-    <tr>
-      <td>
-        <img
-          [src]="producto.imagenUrl || 'https://via.placeholder.com/50'"
-          alt="img"
-          width="50"
-        />
-      </td>
-      <td>{{ producto.nombre }}</td>
-      <td>$ {{ producto.precio }}</td>
-      <td>{{ producto.stock }}</td>
-      <td class="p-text-center">
-  <button
-    pButton
-    icon="pi pi-pencil"
-    class="p-button-sm p-button-text p-mr-2"
-    (click)="abrirEdicion(producto)"
-  ></button>
+    <ng-template pTemplate="body" let-producto>
+        <tr>
+        <td>
+            <img
+            [src]="producto.imagenUrl || 'https://via.placeholder.com/50'"
+            alt="img"
+            width="50"
+            class="border-circle shadow-1"
+            />
+        </td>
+        <td>{{ producto.nombre }}</td>
+        <td>$ {{ producto.precio }}</td>
+        <td>
+            {{ producto.stock }}
+            <span *ngIf="producto.stock < 5" class="p-tag p-tag-rounded p-tag-danger ml-2 text-xs">Bajo</span>
+        </td>
+        <td class="text-center">
+            <button
+            pButton
+            icon="pi pi-pencil"
+            class="p-button-sm p-button-text text-primary"
+            (click)="abrirEdicion(producto)">
+            </button>
+            <button
+            pButton
+            icon="pi pi-trash"
+            class="p-button-sm p-button-text text-red-500"
+            (click)="confirmarEliminar(producto)">
+            </button>
+        </td>
+        </tr>
+    </ng-template>
+    </p-table>
+ </div>
 
-  <button
-    pButton
-    icon="pi pi-trash"
-    class="p-button-sm p-button-text p-button-danger"
-    (click)="confirmarEliminar(producto)"
-  ></button>
-</td>
 
-      <td>
-    <button pButton icon="pi pi-pencil" (click)="abrirEdicion(producto)" class="p-button-sm p-button-text"></button>
-    </td>
-    </tr>
-  </ng-template>
-</p-table>
-
-<!-- Botón para agregar -->
-<button pButton icon="pi pi-plus" label="Nuevo" (click)="abrirNuevo()" class="p-mb-3"></button>
+<!-- Confirmación de borrado -->
 <p-confirmDialog></p-confirmDialog>
-<!-- Formulario modal -->
+
+<!-- Modal para crear/editar -->
 <app-producto-form
   [visible]="modalVisible"
   [categorias]="categorias"
   [producto]="productoSeleccionado"
   (cerrar)="cerrarModal()"
-  (guardar)="guardarProducto($event)"
-></app-producto-form>
+  (guardar)="guardarProducto($event)">
+</app-producto-form>
+</div>
