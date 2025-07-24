@@ -1,39 +1,71 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-import { RegisterComponent } from './features/auth/components/register/register.component';
+import { PrivateLayoutComponent } from './layouts/private-layout/private-layout.component';
+import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
+import { DetalleComponent } from './features/productos/pages/detalle/detalle.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/login', 
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
+
+  {
+    path: '',
+    component: PrivateLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./features/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'productos',
+        loadChildren: () =>
+          import('./features/productos/productos.module').then(
+            (m) => m.ProductosModule
+          ),
+      },
+      {
+        path: 'productos/:id',
+        component: DetalleComponent
+      },
+      {
+        path: 'categorias',
+        loadChildren: () =>
+          import('./features/categorias/categorias.module').then(
+            (m) => m.CategoriasModule
+          ),
+      },
+    ],
+  },
+
+  // 🌐 RUTAS PÚBLICAS (Sin navbar)
   {
     path: 'auth',
-    loadChildren: () =>
-      import('./features/auth/auth.module').then((m) => m.AuthModule),
+    component: PublicLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./features/auth/auth.module').then((m) => m.AuthModule),
+      },
+    ],
   },
-   {
-    path: 'dashboard',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./features/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
-  },
-  { path: 'productos', loadChildren: () => import('./features/productos/productos.module').then(m => m.ProductosModule) },
-  { path: 'categorias', loadChildren: () => import('./features/categorias/categorias.module').then(m => m.CategoriasModule) },
-  {
-    path: 'registro', component: RegisterComponent},
+
   {
     path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: 'dashboard',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

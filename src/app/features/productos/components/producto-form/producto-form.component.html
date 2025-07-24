@@ -1,12 +1,15 @@
+
 <p-dialog
   header="{{ producto ? 'Editar Producto' : 'Nuevo Producto' }}"
   [(visible)]="visible"
   [modal]="true"
-  [style]="{ width: '100%', maxWidth: '500px' }"
+  [style]="{ width: '100%', maxWidth: '520px' }"
+  [contentStyle]="{ 'max-height': '85vh', 'overflow-y': 'auto', 'padding': '1rem' }"
   [dismissableMask]="true"
   (onHide)="onHide()"
   class="rounded-xl animate-fade-in"
 >
+
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
     <!-- Nombre -->
     <div class="field">
@@ -42,28 +45,32 @@
         optionValue="_id"
         placeholder="Seleccionar..."
         class="w-full"
-      ></p-multiSelect>
+        [panelStyle]="{ 'max-height': '200px' }"
+        styleClass="shadow-sm rounded-md"
+        [appendTo]="'body'"
+        ></p-multiSelect>
     </div>
 
     <!-- Footer -->
     <div class="mt-4 flex justify-end gap-2">
+        
   <!-- Botón cancelar -->
-  <button
-    pButton
-    type="button"
-    label="Cancelar"
-    class="p-button-outlined p-button-secondary"
-    (click)="onHide()"
-  > </button>
+    <button
+        pButton
+        type="button"
+        label="Cancelar"
+        class="p-button-outlined p-button-secondary"
+        (click)="onHide()"
+    > </button>
 
-  <!-- Botón guardar (verde) -->
-  <button
-    pButton
-    label="Guardar"
-    type="submit"
-    [disabled]="form.invalid"
-    class="p-button-success"
-  > </button>
-</div>
+  <!-- Botón guardar -->
+    <button
+        pButton
+        label="Guardar"
+        type="submit"
+        [disabled]="form.invalid"
+        class="p-button-success"
+    > </button>
+    </div>
   </form>
 </p-dialog>

@@ -13,6 +13,15 @@ import { authReducer } from './store/auth/auth.reducer';
 import { uiReducer } from './store/ui/ui.reducer';
 import { productosReducer } from './store/productos/productos.reducer';
 import { ProductosEffects } from './store/productos/productos.effects';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+
+import { MenubarModule } from 'primeng/menubar';
+import { ToggleButtonModule } from "primeng/togglebutton"
+import { RouterModule } from '@angular/router';
+import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
+import { PrivateLayoutComponent } from './layouts/private-layout/private-layout.component';
+import { ButtonModule } from 'primeng/button';
+import { NgChartsModule } from 'ng2-charts';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
@@ -25,7 +34,10 @@ const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    PublicLayoutComponent,
+    PrivateLayoutComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,6 +45,11 @@ const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
+    MenubarModule,
+    ToggleButtonModule,
+    RouterModule,
+    ButtonModule,
+    NgChartsModule,
     StoreModule.forRoot(
     {
         productos: productosReducer,

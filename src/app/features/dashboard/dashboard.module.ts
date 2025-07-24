@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MessagesModule } from 'primeng/messages';
     MessagesModule,
     ProgressSpinnerModule,
     CardModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    NgChartsModule
   ]
 })
 export class DashboardModule { }

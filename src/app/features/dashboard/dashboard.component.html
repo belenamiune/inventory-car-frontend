@@ -104,7 +104,7 @@
           <p class="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Categorías</p>
           <div class="flex flex-wrap gap-2">
             <span class="p-tag p-tag-rounded bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
-              <i class="pi pi-car mr-1"></i> Lubricantes
+             <i class="pi pi-car mr-1"></i> Lubricantes
             </span>
             <span class="p-tag p-tag-rounded bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
               <i class="pi pi-filter mr-1"></i> Filtros
@@ -117,5 +117,23 @@
       </div>
     </ng-template>
   </p-card>
+</div>
+</div>
+<div style="width: 1000px !important;
+    margin-left: 2em;
+    margin-top: -12em !important;
+">
+<div class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-lg mt-5 animate-fade-in">
+  <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Stock por Categoría</h3>
+<canvas
+  baseChart
+  [data]="barChartData"
+  [options]="barChartOptions"
+  [type]="barChartType">
+</canvas>
+</div>
+
+<div *ngIf="!barChartData.labels?.length" class="text-gray-500 dark:text-gray-300 text-center">
+  No hay datos suficientes para mostrar el gráfico.
 </div>
 </div>

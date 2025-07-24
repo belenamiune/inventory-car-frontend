@@ -40,16 +40,17 @@
     </div>
   </p-card>
 
-  <!-- Historial -->
-  <div class="mt-6">
-    <p-card class="rounded-xl shadow-md animate-fade-in delay-100">
-      <ng-template pTemplate="header">
-        <div class="flex items-center gap-2">
-          <i class="pi pi-history text-primary"></i>
-          <span class="text-lg font-semibold text-gray-800 dark:text-gray-100">Historial de Movimientos</span>
-        </div>
-      </ng-template>
+ <!-- Historial -->
+<div class="mt-6">
+  <p-card class="rounded-xl shadow-md animate-fade-in delay-100">
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2 ml-2 mt-2">
+        <span class="text-lg font-semibold text-gray-800 dark:text-gray-100">Historial de Movimientos</span>
+      </div>
+    </ng-template>
 
+    <!-- Si hay movimientos, mostramos la tabla -->
+    <ng-container *ngIf="movimientos && movimientos.length > 0; else sinMovimientos">
       <p-table
         [value]="movimientos"
         responsiveLayout="scroll"
@@ -70,6 +71,16 @@
           </tr>
         </ng-template>
       </p-table>
-    </p-card>
-  </div>
+    </ng-container>
+
+    <!-- Mensaje si no hay movimientos -->
+    <ng-template #sinMovimientos>
+      <div class="p-4 text-center text-gray-500 dark:text-gray-300">
+        <i class="pi pi-info-circle text-xl mb-2 block"></i>
+        Este producto aún no tiene movimientos registrados.
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
 </div>
