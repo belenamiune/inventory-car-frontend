@@ -17,6 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoriasEffects, categoriasReducer } from '@features/categorias/store';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
@@ -40,11 +41,12 @@ const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
       {
         productos: productosReducer,
         auth: authReducer,
+        categorias: categoriasReducer,
         theme: themeReducer
       },
       { metaReducers }
     ),
-    EffectsModule.forRoot([ProductosEffects, AuthEffects])
+    EffectsModule.forRoot([ProductosEffects, AuthEffects, CategoriasEffects ])
   ],
 
   providers: [{

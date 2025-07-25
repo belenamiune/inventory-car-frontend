@@ -15,7 +15,7 @@ export class ArbolComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoriasService.getAll().subscribe(categorias => {
-      this.categoriasTree = this.convertirPlanoATree(categorias);
+      this.categoriasTree = this.convertirPlanoATree(categorias.data);
     });
   }
 

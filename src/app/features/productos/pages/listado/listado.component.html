@@ -17,7 +17,7 @@
 
     <!-- Dropdown categoría -->
     <p-dropdown
-      [options]="categorias"
+      [options]="(categorias$ | async ) || []"
       optionLabel="nombre"
       optionValue="_id"
       [(ngModel)]="categoria"
@@ -123,7 +123,7 @@
 <!-- Modal para crear/editar -->
 <app-producto-form
   [visible]="modalVisible"
-  [categorias]="categorias"
+  [categorias]="(categorias$ | async) || []"
   [producto]="productoSeleccionado"
   (cerrar)="cerrarModal()"
   (guardar)="guardarProducto($event)">

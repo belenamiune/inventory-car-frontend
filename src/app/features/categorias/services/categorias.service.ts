@@ -10,11 +10,12 @@ import { environment } from '@env/environment';
 })
 export class CategoriasService {
 
-private baseUrl = `${environment.apiUrl}/productos`;
+private baseUrl = `${environment.apiUrl}/categorias`;
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Categoria[]> {
-    return this.http.get<{ data: Categoria[] }>(`${this.baseUrl}`).pipe(map(res => res.data));
-  }
+ getAll(): Observable<{ data: Categoria[] }> {
+  return this.http.get<{ data: Categoria[] }>(this.baseUrl);
+}
+
 }

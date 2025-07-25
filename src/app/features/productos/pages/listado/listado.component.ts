@@ -19,6 +19,8 @@ import {
 import { Producto } from '@features/productos/models/producto.model';
 import { Categoria } from '@shared/models/categoria.model';
 import { CategoriasService } from '@features/categorias/services/categorias.service';
+import { selectCategorias } from '@app/features/categorias/store/categorias.selectors';
+import { loadCategorias } from '@app/features/categorias/store';
 
 @Component({
   selector: 'app-productos-listado',
@@ -31,6 +33,7 @@ export class ListadoComponent implements OnInit {
   loading$: Observable<boolean> = this.store.select(selectProductosLoading);
   total$: Observable<number> = this.store.select(selectProductosState).pipe(map(s => s.total));
   error$: Observable<string | null> = this.store.select(selectProductosError);
+  categorias$: Observable<Categoria[]> = this.store.select(selectCategorias);
 
   nombre = '';
   categoria = '';
@@ -47,8 +50,8 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPage(0);
-    this.categoriasService.getAll().subscribe(cats => (this.categorias = cats));
-  }
+     this.store.dispatch(loadCategorias())
+    }
 
   loadPage(offset: number) {
     this.store.dispatch(
