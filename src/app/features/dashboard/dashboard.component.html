@@ -106,26 +106,30 @@
           </div>
 
           <!-- Categorías -->
-          <div class="mt-4">
+            <div class="mt-4">
             <p class="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Categorías</p>
+
             <div class="flex flex-wrap gap-2">
-              <span
-                class="p-tag p-tag-rounded bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-              >
-                <i class="pi pi-car mr-1"></i> Lubricantes
-              </span>
-              <span
-                class="p-tag p-tag-rounded bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
-              >
-                <i class="pi pi-filter mr-1"></i> Filtros
-              </span>
-              <span
-                class="p-tag p-tag-rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
-              >
-                <i class="pi pi-cog mr-1"></i> Repuestos
-              </span>
+                <ng-container *ngIf="categorias$ | async as categorias">
+                <ng-container *ngIf="categorias.length > 0; else sinCategorias">
+                    <span
+                        *ngFor="let cat of categorias"
+                        [ngClass]="[
+                            getCategoriaStyles(cat.nombre).bg,
+                            getCategoriaStyles(cat.nombre).text,
+                            'p-tag p-tag-rounded'
+                        ]"
+                        >
+                        <i class="{{ getCategoriaStyles(cat.nombre).icon }} mr-1"></i> {{ cat.nombre }}
+                        </span>
+                </ng-container>
+
+                <ng-template #sinCategorias>
+                    <span class="text-sm text-gray-500">No hay categorías</span>
+                </ng-template>
+                </ng-container>
             </div>
-          </div>
+            </div>
         </div>
       </ng-template>
     </p-card>
