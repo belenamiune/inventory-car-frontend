@@ -44,7 +44,12 @@ ng serve
 ## Demo
 ![Login](imagenes/login.png)
 ![Registro](imagenes/registro.png)
-
+![Dashboard](imagenes/dashboard.png)
+![Listado](imagenes/listado.png)
+![Creacion](imagenes/creacion.png)
+![Edicion](imagenes/edicion.png)
+![Eliminacion](imagenes/eliminacion.png)
+![Detalle](imagenes/detalle.png)
  
 ## Author
 - [@belenamiune](https://github.com/belenamiune)
