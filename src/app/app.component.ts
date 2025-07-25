@@ -15,7 +15,7 @@ export class AppComponent {
   ngOnInit() {
   this.store.select(selectTheme).subscribe(theme => {
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark'); // Tailwind necesita esto
+      document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }

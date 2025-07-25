@@ -41,6 +41,7 @@ export class ListadoComponent implements OnInit {
   categorias: Categoria[] = [];
   productoSeleccionado: Producto | null = null;
   modalVisible = false;
+
   constructor(
     private store: Store,
     private categoriasService: CategoriasService,

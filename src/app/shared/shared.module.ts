@@ -30,7 +30,7 @@ import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 import { TreeModule } from 'primeng/tree';
 import { ConfirmationService } from 'primeng/api';
-
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,8 @@ import { ConfirmationService } from 'primeng/api';
     ReactiveFormsModule,
     ConfirmDialogModule,
     TagModule,
-    PanelModule
+    PanelModule,
+    ChartModule
   ],
   exports: [
     CommonModule,
@@ -83,7 +84,8 @@ import { ConfirmationService } from 'primeng/api';
     ReactiveFormsModule,
     ConfirmDialogModule,
     TagModule,
-    PanelModule
+    PanelModule,
+    ChartModule
   ],
   providers: [ConfirmationService]
 })
