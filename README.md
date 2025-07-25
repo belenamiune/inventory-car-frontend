@@ -1,27 +1,51 @@
-# ChallengeProject
+# Inventario - Frontend
+Aplicación web para la gestión de inventario de un taller mecánico. Desarrollada con Angular 14, PrimeNG, NGRX y RxJS.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  1. Dashboard con KPIs y gráfico de categorías
 
-## Code scaffolding
+  2. Listado de productos con paginación y filtros
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  3. Búsqueda por nombre y categoría
 
-## Build
+  4. Crear, editar y eliminar productos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  6. Modo oscuro
 
-## Running unit tests
+  7. Vista detallada de productos con historial de movimientos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  8. Validaciones en formularios
 
-## Running end-to-end tests
+  9. Autenticación 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  10. Responsive design
 
-## Further help
+  11. Pruebas unitarias
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Tecnologías utilizadas
+- Angular 14
+- PrimeNG
+- NGRX (Store, Effects)
+- RxJS
+- TailwindCSS
+- Chart.js 
+- TypeScript
+
+## Instalación
+```
+git clone https://github.com/belenamiune/inventory-car-frontend
+cd challenge-project
+npm install
+ng serve
+```
+
+## Demo
+![Login](src/app/assets/readme/imagenes/login.png)
+
+
+ 
+## Author
+- [@belenamiune](https://github.com/belenamiune)
+
