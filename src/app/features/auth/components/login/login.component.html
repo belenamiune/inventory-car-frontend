@@ -3,8 +3,11 @@
     header="Iniciar sesión"
     styleClass="w-full sm:max-w-xl p-6 rounded-xl shadow-6 login-card"
   >
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-fluid flex flex-col gap-4 w-[200]">
-
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="p-fluid flex flex-col gap-4 w-[200]"
+    >
       <!-- Email -->
       <div>
         <label for="email" class="block text-sm text-gray-700 dark:text-gray-300">Email</label>
@@ -17,18 +20,26 @@
             placeholder="tú@correo.com"
             formControlName="email"
             class="w-full"
-            style="margin-left: 2em;"
-            [ngClass]="{ 'ng-invalid ng-dirty': loginForm.get('email')?.invalid && loginForm.get('email')?.touched }"
+            style="margin-left: 2em"
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            }"
           />
         </span>
-        <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="p-error">
+        <small
+          *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          class="p-error"
+        >
           Email inválido
         </small>
       </div>
 
       <!-- Password -->
       <div>
-        <label for="password" class="block text-sm text-gray-700 dark:text-gray-300">Contraseña</label>
+        <label for="password" class="block text-sm text-gray-700 dark:text-gray-300"
+          >Contraseña</label
+        >
         <span class="p-input-icon-left w-full">
           <i class="pi pi-lock"></i>
           <input
@@ -38,18 +49,24 @@
             placeholder="••••••••"
             formControlName="password"
             class="w-full"
-            style="margin-left: 2em;"
-            [ngClass]="{ 'ng-invalid ng-dirty': loginForm.get('password')?.invalid && loginForm.get('password')?.touched }"
+            style="margin-left: 2em"
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+            }"
           />
         </span>
-        <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="p-error">
+        <small
+          *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          class="p-error"
+        >
           La contraseña es obligatoria
         </small>
       </div>
 
       <!-- Errores globales -->
       <p-messages
-        *ngIf="(error$ | async) as error"
+        *ngIf="error$ | async as error"
         [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
         [closable]="true"
         class="p-mb-2"
@@ -62,7 +79,7 @@
         class="p-button-success p-button-rounded p-button-block"
         [disabled]="loginForm.invalid || (loading$ | async)"
       >
-        <ng-container *ngIf="(loading$ | async); else labelTexto">
+        <ng-container *ngIf="loading$ | async; else labelTexto">
           <i class="pi pi-spin pi-spinner mr-2"></i> Cargando...
         </ng-container>
         <ng-template #labelTexto>Iniciar sesión</ng-template>
@@ -79,7 +96,6 @@
           Registrate
         </button>
       </div>
-
     </form>
   </p-card>
 </div>

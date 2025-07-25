@@ -6,7 +6,7 @@ export interface UIState {
 }
 
 export const initialState: UIState = {
-  theme: localStorage.getItem('theme') === 'dark' ? 'dark' : 'light',
+  theme: localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
 };
 
 export const uiReducer = createReducer(
@@ -15,21 +15,21 @@ export const uiReducer = createReducer(
     UIActions.setLightTheme,
     (state: UIState): UIState => ({
       ...state,
-      theme: 'light', 
+      theme: 'light'
     })
   ),
   on(
     UIActions.setDarkTheme,
     (state: UIState): UIState => ({
       ...state,
-      theme: 'dark',
+      theme: 'dark'
     })
   ),
   on(
     UIActions.toggleTheme,
     (state: UIState): UIState => ({
       ...state,
-      theme: state.theme === 'light' ? 'dark' : 'light',
+      theme: state.theme === 'light' ? 'dark' : 'light'
     })
-  ),
+  )
 );

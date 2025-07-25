@@ -3,9 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "~primeng/resources/themes/saga-blue/theme.css";
-@import "~primeng/resources/primeng.min.css";
-@import "~primeicons/primeicons.css";
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeicons/primeicons.css';
 
 body.light-theme {
   --primary-color: #1976d2;
@@ -26,4 +26,3 @@ body.dark-theme {
 ::ng-deep .p-progress-spinner {
   display: inline-block;
 }
-

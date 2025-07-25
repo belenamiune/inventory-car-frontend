@@ -11,12 +11,11 @@ import { Movimiento } from 'src/app/shared/models/movimiento.model';
 
 @Component({
   selector: 'app-detalle',
-  templateUrl: './detalle.component.html',
+  templateUrl: './detalle.component.html'
 })
 export class DetalleComponent implements OnInit {
   producto$: Observable<Producto | undefined> | undefined;
   movimientos: Movimiento[] = [];
-
 
   constructor(
     private route: ActivatedRoute,
@@ -25,18 +24,15 @@ export class DetalleComponent implements OnInit {
     private movimientosService: MovimientosService
   ) {}
 
-  
   ngOnInit(): void {
     this.producto$ = this.route.paramMap.pipe(
-      switchMap((params) => {
+      switchMap(params => {
         const id = params.get('id')!;
         this.loadMovimientos(id);
         return this.store.select(selectAllProductos).pipe(
-          switchMap((productos) => {
-            const encontrado = productos.find((p) => p._id === id);
-            return encontrado
-              ? of(encontrado)
-              : this.productosService.getById(id); 
+          switchMap(productos => {
+            const encontrado = productos.find(p => p._id === id);
+            return encontrado ? of(encontrado) : this.productosService.getById(id);
           })
         );
       })
@@ -44,8 +40,8 @@ export class DetalleComponent implements OnInit {
   }
 
   loadMovimientos(id: string) {
-  this.movimientosService.getByProductoId(id).subscribe((data) => {
-    this.movimientos = data;
-  });
-}
+    this.movimientosService.getByProductoId(id).subscribe(data => {
+      this.movimientos = data;
+    });
+  }
 }

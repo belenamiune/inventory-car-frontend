@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  styleUrls: ["./login.component.scss"],
-  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
@@ -17,23 +17,26 @@ export class LoginComponent {
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder, private store: Store, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private router: Router
+  ) {}
 
   onSubmit() {
     if (this.loginForm.invalid) return;
 
     const credentials = {
-        email: this.loginForm.get('email')?.value || '',
-        password: this.loginForm.get('password')?.value || '',
+      email: this.loginForm.get('email')?.value || '',
+      password: this.loginForm.get('password')?.value || ''
     };
     this.store.dispatch(login({ credentials }));
   }
 
-    irARegistro() {
+  irARegistro() {
     this.router.navigate(['/registro']);
-    }
-
+  }
 }

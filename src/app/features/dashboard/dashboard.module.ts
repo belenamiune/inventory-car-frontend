@@ -9,12 +9,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
 import { NgChartsModule } from 'ng2-charts';
 
-
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    HomeComponent
-  ],
+  declarations: [DashboardComponent, HomeComponent],
   imports: [
     CommonModule,
     MessagesModule,
@@ -24,4 +20,4 @@ import { NgChartsModule } from 'ng2-charts';
     NgChartsModule
   ]
 })
-export class DashboardModule { }
+export class DashboardModule {}

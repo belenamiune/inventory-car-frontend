@@ -11,16 +11,13 @@ import { AuthEffects } from 'src/app/store/auth/auth.effects';
 import { authReducer } from 'src/app/store/auth/auth.reducer';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { MessageModule } from 'primeng/message'; 
+import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
-import { CardModule } from "primeng/card"; 
+import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent
-  ],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -32,7 +29,7 @@ import { ButtonModule } from 'primeng/button';
     StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([AuthEffects]),
     CardModule
-],
+  ],
   providers: [AuthService]
 })
-export class AuthModule { }
+export class AuthModule {}

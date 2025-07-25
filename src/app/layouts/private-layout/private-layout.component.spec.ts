@@ -8,9 +8,8 @@ describe('PrivateLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrivateLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [PrivateLayoutComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PrivateLayoutComponent);
     component = fixture.componentInstance;

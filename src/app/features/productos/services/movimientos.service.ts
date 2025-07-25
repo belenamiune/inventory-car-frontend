@@ -4,7 +4,7 @@ import { Movimiento } from 'src/app/shared/models/movimiento.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class MovimientosService {
   private baseUrl = 'http://localhost:4000/api/movimientos';

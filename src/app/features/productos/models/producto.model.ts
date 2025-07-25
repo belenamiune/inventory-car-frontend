@@ -1,4 +1,4 @@
-import { Categoria } from "src/app/shared/models/categoria.model";
+import { Categoria } from 'src/app/shared/models/categoria.model';
 
 export interface Producto {
   _id: string;
@@ -6,5 +6,5 @@ export interface Producto {
   precio: number;
   stock: number;
   imagenUrl?: string;
-  categorias?: Categoria[]; 
+  categorias?: Categoria[];
 }

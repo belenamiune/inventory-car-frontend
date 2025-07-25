@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { createProducto, loadPaginatedProductos, updateProducto, deleteProducto } from '../../../../store/productos/productos.actions';
+import {
+  createProducto,
+  loadPaginatedProductos,
+  updateProducto,
+  deleteProducto
+} from '../../../../store/productos/productos.actions';
 import {
   selectAllProductos,
+  selectProductosError,
   selectProductosLoading,
-  selectProductosState,
+  selectProductosState
 } from '../../../../store/productos/productos.selector';
 import { Observable } from 'rxjs';
 import { Producto } from '../../models/producto.model';
@@ -16,52 +22,59 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos-listado',
-  templateUrl: './listado.component.html',
+  templateUrl: './listado.component.html'
 })
 export class ListadoComponent implements OnInit {
-  productos$: Observable<Producto[]> = this.store.select(selectAllProductos).pipe(
-    map((productos) => productos || [])
-  );
+  productos$: Observable<Producto[]> = this.store
+    .select(selectAllProductos)
+    .pipe(map(productos => productos || []));
   loading$: Observable<boolean> = this.store.select(selectProductosLoading);
-  total$: Observable<number> = this.store.select(selectProductosState).pipe(map((s) => s.total));
+  total$: Observable<number> = this.store.select(selectProductosState).pipe(map(s => s.total));
+  error$: Observable<string | null> = this.store.select(selectProductosError);
+
   nombre = '';
   categoria = '';
   rows = 10;
- categorias: Categoria[] = [];
- productoSeleccionado: Producto | null = null;
-modalVisible = false;
-  constructor(private store: Store,  private categoriasService: CategoriasService, private confirmationService: ConfirmationService, private router: Router) {}
+  categorias: Categoria[] = [];
+  productoSeleccionado: Producto | null = null;
+  modalVisible = false;
+  constructor(
+    private store: Store,
+    private categoriasService: CategoriasService,
+    private confirmationService: ConfirmationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadPage(0);
-    this.categoriasService.getAll().subscribe((cats) => (this.categorias = cats));
+    this.categoriasService.getAll().subscribe(cats => (this.categorias = cats));
   }
 
- loadPage(offset: number) {
+  loadPage(offset: number) {
     this.store.dispatch(
-        loadPaginatedProductos({
+      loadPaginatedProductos({
         limit: this.rows,
         offset,
         nombre: this.nombre,
-        categoria: this.categoria,
-        })
+        categoria: this.categoria
+      })
     );
-    }
+  }
 
   onBuscar() {
     this.loadPage(0);
   }
 
   resetFiltros() {
-  this.nombre = '';
-  this.categoria = '';
-  this.loadPage(0);
-}
+    this.nombre = '';
+    this.categoria = '';
+    this.loadPage(0);
+  }
 
-verDetalle(producto: any) {
-    console.log("pase", producto)
-  this.router.navigate(['/productos', producto._id]);
-}
+  verDetalle(producto: any) {
+    console.log('pase', producto);
+    this.router.navigate(['/productos', producto._id]);
+  }
 
   onPageChange(event: any) {
     this.loadPage(event.first);
@@ -70,39 +83,39 @@ verDetalle(producto: any) {
   abrirNuevo() {
     this.productoSeleccionado = null;
     this.modalVisible = true;
-}
+  }
 
-    abrirEdicion(producto: Producto) {
+  abrirEdicion(producto: Producto) {
     this.productoSeleccionado = producto;
     this.modalVisible = true;
-    }
+  }
 
-    cerrarModal() {
+  cerrarModal() {
     this.modalVisible = false;
-    }
+  }
 
-    guardarProducto(producto: Producto) {
+  guardarProducto(producto: Producto) {
     if (producto._id) {
-        this.store.dispatch(updateProducto({ producto }));
+      this.store.dispatch(updateProducto({ producto }));
     } else {
-        this.store.dispatch(createProducto({ producto }));
+      this.store.dispatch(createProducto({ producto }));
     }
     this.cerrarModal();
-    }
+  }
 
-    confirmarEliminar(producto: Producto) {
+  confirmarEliminar(producto: Producto) {
     this.confirmationService.confirm({
-        message: `¿Estás segura de eliminar "${producto.nombre}"?`,
-        acceptLabel: 'Eliminar',
-        rejectLabel: 'Cancelar',
-        header: 'Confirmar eliminación',
-        icon: 'pi pi-exclamation-triangle',
-        
-    acceptButtonStyleClass: 'p-button-danger',
-    rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
-        accept: () => {
+      message: `¿Estás segura de eliminar "${producto.nombre}"?`,
+      acceptLabel: 'Eliminar',
+      rejectLabel: 'Cancelar',
+      header: 'Confirmar eliminación',
+      icon: 'pi pi-exclamation-triangle',
+
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
+      accept: () => {
         this.store.dispatch(deleteProducto({ id: producto._id }));
-        },
+      }
     });
-    }
+  }
 }

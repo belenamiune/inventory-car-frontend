@@ -12,11 +12,10 @@ export class AppComponent {
 
   constructor(private store: Store) {}
 
-ngOnInit() {
-  this.store.select(selectTheme).subscribe((theme) => {
-    document.body.classList.remove('light-theme', 'dark-theme');
-    document.body.classList.add(`${theme}-theme`);
-  });
-}
-
+  ngOnInit() {
+    this.store.select(selectTheme).subscribe(theme => {
+      document.body.classList.remove('light-theme', 'dark-theme');
+      document.body.classList.add(`${theme}-theme`);
+    });
+  }
 }

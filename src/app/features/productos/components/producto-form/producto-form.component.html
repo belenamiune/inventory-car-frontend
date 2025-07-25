@@ -1,15 +1,13 @@
-
 <p-dialog
   header="{{ producto ? 'Editar Producto' : 'Nuevo Producto' }}"
   [(visible)]="visible"
   [modal]="true"
   [style]="{ width: '100%', maxWidth: '520px' }"
-  [contentStyle]="{ 'max-height': '85vh', 'overflow-y': 'auto', 'padding': '1rem' }"
+  [contentStyle]="{ 'max-height': '85vh', 'overflow-y': 'auto', padding: '1rem' }"
   [dismissableMask]="true"
   (onHide)="onHide()"
   class="rounded-xl animate-fade-in"
 >
-
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
     <!-- Nombre -->
     <div class="field">
@@ -31,13 +29,17 @@
 
     <!-- Imagen -->
     <div class="field mt-3">
-      <label for="imagenUrl" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">URL de Imagen</label>
+      <label for="imagenUrl" class="block text-sm text-gray-700 dark:text-gray-300 mb-1"
+        >URL de Imagen</label
+      >
       <input id="imagenUrl" pInputText formControlName="imagenUrl" class="w-full" />
     </div>
 
     <!-- Categorías -->
     <div class="field mt-3">
-      <label for="categorias" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Categorías</label>
+      <label for="categorias" class="block text-sm text-gray-700 dark:text-gray-300 mb-1"
+        >Categorías</label
+      >
       <p-multiSelect
         formControlName="categorias"
         [options]="categorias"
@@ -48,29 +50,28 @@
         [panelStyle]="{ 'max-height': '200px' }"
         styleClass="shadow-sm rounded-md"
         [appendTo]="'body'"
-        ></p-multiSelect>
+      ></p-multiSelect>
     </div>
 
     <!-- Footer -->
     <div class="mt-4 flex justify-end gap-2">
-        
-  <!-- Botón cancelar -->
-    <button
+      <!-- Botón cancelar -->
+      <button
         pButton
         type="button"
         label="Cancelar"
         class="p-button-outlined p-button-secondary"
         (click)="onHide()"
-    > </button>
+      ></button>
 
-  <!-- Botón guardar -->
-    <button
+      <!-- Botón guardar -->
+      <button
         pButton
         label="Guardar"
         type="submit"
         [disabled]="form.invalid"
         class="p-button-success"
-    > </button>
+      ></button>
     </div>
   </form>
 </p-dialog>

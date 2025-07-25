@@ -5,10 +5,10 @@ import { AuthState, initialAuthState } from './auth.state';
 export const authReducer = createReducer(
   initialAuthState,
 
-  on(AuthActions.login, AuthActions.register, (state) => ({
+  on(AuthActions.login, AuthActions.register, state => ({
     ...state,
     loading: true,
-    error: null,
+    error: null
   })),
 
   on(AuthActions.loginSuccess, (state, { token, email }) => ({
@@ -16,19 +16,19 @@ export const authReducer = createReducer(
     user: email,
     token,
     loading: false,
-    error: null,
+    error: null
   })),
 
-  on(AuthActions.registerSuccess, (state) => ({
+  on(AuthActions.registerSuccess, state => ({
     ...state,
     loading: false,
-    error: null,
+    error: null
   })),
 
   on(AuthActions.loginFailure, AuthActions.registerFailure, (state, { error }) => ({
     ...state,
     loading: false,
-    error,
+    error
   })),
 
   on(AuthActions.logout, () => initialAuthState)

@@ -4,7 +4,7 @@ import { Categoria } from '../../../shared/models/categoria.model';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CategoriasService {
   private baseUrl = 'http://localhost:4000/api/categorias';
@@ -12,8 +12,6 @@ export class CategoriasService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Categoria[]> {
-  return this.http.get<{ data: Categoria[] }>(`${this.baseUrl}`).pipe(
-    map((res) => res.data)
-  );
-}
+    return this.http.get<{ data: Categoria[] }>(`${this.baseUrl}`).pipe(map(res => res.data));
+  }
 }

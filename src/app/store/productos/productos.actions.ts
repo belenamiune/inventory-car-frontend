@@ -18,10 +18,7 @@ export const loadPaginatedProductos = createAction(
   props<{ limit: number; offset: number; nombre?: string; categoria?: string }>()
 );
 
-export const createProducto = createAction(
-  '[Productos] Create',
-  props<{ producto: Producto }>()
-);
+export const createProducto = createAction('[Productos] Create', props<{ producto: Producto }>());
 
 export const createProductoSuccess = createAction(
   '[Productos] Create Success',
@@ -33,10 +30,7 @@ export const createProductoFailure = createAction(
   props<{ error: string }>()
 );
 
-export const updateProducto = createAction(
-  '[Productos] Update',
-  props<{ producto: Producto }>()
-);
+export const updateProducto = createAction('[Productos] Update', props<{ producto: Producto }>());
 
 export const updateProductoSuccess = createAction(
   '[Productos] Update Success',
@@ -48,10 +42,7 @@ export const updateProductoFailure = createAction(
   props<{ error: string }>()
 );
 
-export const deleteProducto = createAction(
-  '[Productos] Delete',
-  props<{ id: string }>()
-);
+export const deleteProducto = createAction('[Productos] Delete', props<{ id: string }>());
 
 export const deleteProductoSuccess = createAction(
   '[Productos] Delete Success',
@@ -62,4 +53,3 @@ export const deleteProductoFailure = createAction(
   '[Productos] Delete Failure',
   props<{ error: string }>()
 );
-

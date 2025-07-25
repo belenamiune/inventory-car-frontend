@@ -1,9 +1,9 @@
 <div class="flex justify-center items-center min-h-screen px-4 bg-gray-50 dark:bg-gray-900">
   <p-card
     header="Crear cuenta"
-    styleClass="w-full sm:max-w-xl p-6 rounded-xl shadow-6 register-card">
+    styleClass="w-full sm:max-w-xl p-6 rounded-xl shadow-6 register-card"
+  >
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="p-fluid flex flex-col gap-4">
-
       <!-- Email -->
       <div>
         <label for="email" class="block text-sm text-gray-700 dark:text-gray-300">Email</label>
@@ -16,18 +16,26 @@
             placeholder="tú@correo.com"
             formControlName="email"
             class="w-full"
-            style="margin-left: 2em;"
-            [ngClass]="{ 'ng-invalid ng-dirty': registerForm.get('email')?.invalid && registerForm.get('email')?.touched }"
+            style="margin-left: 2em"
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                registerForm.get('email')?.invalid && registerForm.get('email')?.touched
+            }"
           />
         </span>
-        <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="p-error">
+        <small
+          *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          class="p-error"
+        >
           Email inválido
         </small>
       </div>
 
       <!-- Contraseña -->
       <div>
-        <label for="password" class="block text-sm text-gray-700 dark:text-gray-300">Contraseña</label>
+        <label for="password" class="block text-sm text-gray-700 dark:text-gray-300"
+          >Contraseña</label
+        >
         <span class="p-input-icon-left w-full">
           <i class="pi pi-lock"></i>
           <input
@@ -37,18 +45,24 @@
             placeholder="••••••••"
             formControlName="password"
             class="w-full"
-            style="margin-left: 2em;"
-            [ngClass]="{ 'ng-invalid ng-dirty': registerForm.get('password')?.invalid && registerForm.get('password')?.touched }"
+            style="margin-left: 2em"
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                registerForm.get('password')?.invalid && registerForm.get('password')?.touched
+            }"
           />
         </span>
-        <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="p-error">
+        <small
+          *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          class="p-error"
+        >
           La contraseña es obligatoria
         </small>
       </div>
 
       <!-- Mensaje de error -->
       <p-messages
-        *ngIf="(error$ | async) as error"
+        *ngIf="error$ | async as error"
         [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
         [closable]="true"
         class="p-mb-2"
@@ -61,7 +75,7 @@
         class="p-button-primary p-button-rounded p-button-block"
         [disabled]="registerForm.invalid || (loading$ | async)"
       >
-        <ng-container *ngIf="(loading$ | async); else btnText">
+        <ng-container *ngIf="loading$ | async; else btnText">
           <i class="pi pi-spin pi-spinner mr-2"></i> Registrando...
         </ng-container>
         <ng-template #btnText>Registrarse</ng-template>

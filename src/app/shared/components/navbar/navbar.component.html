@@ -10,14 +10,14 @@
 
       <!-- Desktop Nav -->
       <div class="hidden md:flex items-center gap-6">
-          <a
-            *ngFor="let route of routes"
-            [routerLink]="route.path"
-            routerLinkActive="text-indigo-600 font-semibold border-b-2 border-indigo-600"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 transition font-medium pb-1"
+        <a
+          *ngFor="let route of routes"
+          [routerLink]="route.path"
+          routerLinkActive="text-indigo-600 font-semibold border-b-2 border-indigo-600"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 transition font-medium pb-1"
         >
-            {{ route.label }}
+          {{ route.label }}
         </a>
       </div>
 
@@ -40,8 +40,15 @@
 
       <!-- Mobile menu button -->
       <div class="md:hidden">
-        <button (click)="mobileMenuOpen = !mobileMenuOpen" class="text-gray-700 dark:text-gray-200 focus:outline-none">
-          <i class="pi" [ngClass]="mobileMenuOpen ? 'pi-times' : 'pi-bars'" style="font-size: 1.5rem"></i>
+        <button
+          (click)="mobileMenuOpen = !mobileMenuOpen"
+          class="text-gray-700 dark:text-gray-200 focus:outline-none"
+        >
+          <i
+            class="pi"
+            [ngClass]="mobileMenuOpen ? 'pi-times' : 'pi-bars'"
+            style="font-size: 1.5rem"
+          ></i>
         </button>
       </div>
     </div>
@@ -49,15 +56,15 @@
 
   <!-- Mobile Nav -->
   <div *ngIf="mobileMenuOpen" class="md:hidden px-4 pb-4">
-      <a
-    *ngFor="let route of routes"
-    [routerLink]="route.path"
-    routerLinkActive="text-indigo-600 font-semibold border-b-2 border-indigo-600"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="block py-2 text-gray-700 dark:text-gray-200 hover:text-indigo-600 font-medium"
-  >
-    {{ route.label }}
-  </a>
+    <a
+      *ngFor="let route of routes"
+      [routerLink]="route.path"
+      routerLinkActive="text-indigo-600 font-semibold border-b-2 border-indigo-600"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="block py-2 text-gray-700 dark:text-gray-200 hover:text-indigo-600 font-medium"
+    >
+      {{ route.label }}
+    </a>
 
     <div class="flex items-center justify-between mt-3">
       <p-toggleButton

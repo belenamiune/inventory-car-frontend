@@ -1,18 +1,11 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Categoria } from 'src/app/shared/models/categoria.model';
 import { Producto } from 'src/app/features/productos/models/producto.model';
 
 @Component({
   selector: 'app-producto-form',
-  templateUrl: './producto-form.component.html',
+  templateUrl: './producto-form.component.html'
 })
 export class ProductoFormComponent implements OnChanges {
   @Input() visible = false;
@@ -26,7 +19,7 @@ export class ProductoFormComponent implements OnChanges {
     precio: [null, [Validators.required, Validators.min(0)]],
     stock: [null, [Validators.required, Validators.min(0)]],
     imagenUrl: [''],
-    categorias: [[]],
+    categorias: [[]]
   });
 
   constructor(private fb: FormBuilder) {}
@@ -42,10 +35,9 @@ export class ProductoFormComponent implements OnChanges {
   onSubmit() {
     if (this.form.invalid) return;
     this.guardar.emit({
-        _id: this.producto!._id, 
-        ...this.form.value
+      _id: this.producto!._id,
+      ...this.form.value
     } as unknown as Producto);
-
   }
 
   onHide() {

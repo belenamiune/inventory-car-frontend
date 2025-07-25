@@ -7,19 +7,22 @@ import { selectTheme } from 'src/app/store/ui/ui.selectors';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
   theme$ = this.store.select(selectTheme);
   mobileMenuOpen = false;
 
   routes = [
-  { path: '/dashboard', label: 'Dashboard' },
-  { path: '/productos', label: 'Productos' },
-  { path: '', label: 'Categorías' }
-];
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/productos', label: 'Productos' },
+    { path: '', label: 'Categorías' }
+  ];
 
-  constructor(private store: Store, private router: Router) {}
+  constructor(
+    private store: Store,
+    private router: Router
+  ) {}
 
   logout() {
     this.store.dispatch(logout());

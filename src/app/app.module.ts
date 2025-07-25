@@ -16,29 +16,24 @@ import { ProductosEffects } from './store/productos/productos.effects';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 import { MenubarModule } from 'primeng/menubar';
-import { ToggleButtonModule } from "primeng/togglebutton"
+import { ToggleButtonModule } from 'primeng/togglebutton';
 import { RouterModule } from '@angular/router';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { PrivateLayoutComponent } from './layouts/private-layout/private-layout.component';
 import { ButtonModule } from 'primeng/button';
 import { NgChartsModule } from 'ng2-charts';
+import { AuthEffects } from './store/auth/auth.effects';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
-    keys: ['auth'], 
-    rehydrate: true,
+    keys: ['auth'],
+    rehydrate: true
   })(reducer);
 }
-
 const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    PublicLayoutComponent,
-    PrivateLayoutComponent
-  ],
+  declarations: [AppComponent, NavbarComponent, PublicLayoutComponent, PrivateLayoutComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -51,17 +46,17 @@ const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
     ButtonModule,
     NgChartsModule,
     StoreModule.forRoot(
-    {
+      {
         productos: productosReducer,
         auth: authReducer,
-        ui: uiReducer,
-    },
-    { metaReducers }
+        ui: uiReducer
+      },
+      { metaReducers }
     ),
-    EffectsModule.forRoot([ ProductosEffects]),
+    EffectsModule.forRoot([ProductosEffects, AuthEffects])
   ],
-  
+
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

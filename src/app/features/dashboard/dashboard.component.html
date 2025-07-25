@@ -3,7 +3,9 @@
   <div class="w-full md:w-3/4 flex flex-col gap-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- Card: Total Productos -->
-      <p-card class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in">
+      <p-card
+        class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in"
+      >
         <div class="flex items-center justify-between p-4">
           <div>
             <p class="text-sm text-gray-600 dark:text-gray-300 m-0">Total de Productos</p>
@@ -19,7 +21,9 @@
       </p-card>
 
       <!-- Card: Stock Bajo -->
-      <p-card class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in delay-100">
+      <p-card
+        class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in delay-100"
+      >
         <div class="flex items-center justify-between p-4">
           <div>
             <p class="text-sm text-gray-600 dark:text-gray-300 m-0">Stock Bajo (&lt; 5)</p>
@@ -35,12 +39,14 @@
       </p-card>
 
       <!-- Card: Valor Inventario -->
-      <p-card class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in delay-200">
+      <p-card
+        class="shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in delay-200"
+      >
         <div class="flex items-center justify-between p-4">
           <div>
             <p class="text-sm text-gray-600 dark:text-gray-300 m-0">Valor Inventario</p>
             <h2 class="text-3xl font-semibold text-green-600 dark:text-green-400 m-0">
-              $ {{ valorInventario$ | async | number:'1.0-0' }}
+              $ {{ valorInventario$ | async | number: '1.0-0' }}
               <span class="text-sm text-green-500 ml-2">↑ 3%</span>
             </h2>
           </div>
@@ -58,7 +64,7 @@
 
     <!-- Mensaje de error -->
     <p-messages
-      *ngIf="(error$ | async) as error"
+      *ngIf="error$ | async as error"
       [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
       [closable]="true"
       class="mt-3"
@@ -66,74 +72,62 @@
   </div>
 
   <!-- Panel lateral de Resumen -->
-<div class="w-full md:w-1/4">
-  <p-card class="shadow-lg rounded-xl animate-fade-in delay-300">
-    <ng-template pTemplate="content">
-      <div class="p-4 flex flex-col gap-4">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Resumen</h3>
+  <div class="w-full md:w-1/4">
+    <p-card class="shadow-lg rounded-xl animate-fade-in delay-300">
+      <ng-template pTemplate="content">
+        <div class="p-4 flex flex-col gap-4">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Resumen</h3>
 
-        <!-- Item de resumen -->
-        <div class="flex items-center justify-between border-b pb-2">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-box text-indigo-500 text-lg"></i>
-            <span class="text-sm text-gray-500 dark:text-gray-300">SKU Total</span>
-          </div>
-          <span class="text-base font-bold text-indigo-600 dark:text-indigo-300">
-            {{ total$ | async }}
-          </span>
-        </div>
-
-        <div class="flex items-center justify-between border-b pb-2">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-bookmark text-purple-500 text-lg"></i>
-            <span class="text-sm text-gray-500 dark:text-gray-300">Productos Reservados</span>
-          </div>
-          <span class="text-base font-bold text-purple-600 dark:text-purple-300">234</span>
-        </div>
-
-        <div class="flex items-center justify-between pb-1">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-exclamation-circle text-red-500 text-lg"></i>
-            <span class="text-sm text-gray-500 dark:text-gray-300">Stock con Problemas</span>
-          </div>
-          <span class="text-base font-bold text-red-500">2</span>
-        </div>
-
-        <!-- Categorías -->
-        <div class="mt-4">
-          <p class="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Categorías</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="p-tag p-tag-rounded bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
-             <i class="pi pi-car mr-1"></i> Lubricantes
-            </span>
-            <span class="p-tag p-tag-rounded bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
-              <i class="pi pi-filter mr-1"></i> Filtros
-            </span>
-            <span class="p-tag p-tag-rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
-              <i class="pi pi-cog mr-1"></i> Repuestos
+          <!-- Item de resumen -->
+          <div class="flex items-center justify-between border-b pb-2">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-box text-indigo-500 text-lg"></i>
+              <span class="text-sm text-gray-500 dark:text-gray-300">SKU Total</span>
+            </div>
+            <span class="text-base font-bold text-indigo-600 dark:text-indigo-300">
+              {{ total$ | async }}
             </span>
           </div>
-        </div>
-      </div>
-    </ng-template>
-  </p-card>
-</div>
-</div>
-<div style="width: 1000px !important;
-    margin-left: 2em;
-    margin-top: -12em !important;
-">
-<div class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-lg mt-5 animate-fade-in">
-  <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Stock por Categoría</h3>
-<canvas
-  baseChart
-  [data]="barChartData"
-  [options]="barChartOptions"
-  [type]="barChartType">
-</canvas>
-</div>
 
-<div *ngIf="!barChartData.labels?.length" class="text-gray-500 dark:text-gray-300 text-center">
-  No hay datos suficientes para mostrar el gráfico.
-</div>
+          <div class="flex items-center justify-between border-b pb-2">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-bookmark text-purple-500 text-lg"></i>
+              <span class="text-sm text-gray-500 dark:text-gray-300">Productos Reservados</span>
+            </div>
+            <span class="text-base font-bold text-purple-600 dark:text-purple-300">234</span>
+          </div>
+
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-exclamation-circle text-red-500 text-lg"></i>
+              <span class="text-sm text-gray-500 dark:text-gray-300">Stock con Problemas</span>
+            </div>
+            <span class="text-base font-bold text-red-500">2</span>
+          </div>
+
+          <!-- Categorías -->
+          <div class="mt-4">
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Categorías</p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="p-tag p-tag-rounded bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+              >
+                <i class="pi pi-car mr-1"></i> Lubricantes
+              </span>
+              <span
+                class="p-tag p-tag-rounded bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
+              >
+                <i class="pi pi-filter mr-1"></i> Filtros
+              </span>
+              <span
+                class="p-tag p-tag-rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+              >
+                <i class="pi pi-cog mr-1"></i> Repuestos
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
 </div>

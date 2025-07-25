@@ -8,17 +8,8 @@ import { ArbolComponent } from './pages/arbol/arbol.component';
 import { TreeModule } from 'primeng/tree';
 import { CardModule } from 'primeng/card';
 
-
 @NgModule({
-  declarations: [
-    CategoriasComponent,
-    ArbolComponent
-  ],
-  imports: [
-    CommonModule,
-    CategoriasRoutingModule,
-    TreeModule,
-    CardModule
-  ]
+  declarations: [CategoriasComponent, ArbolComponent],
+  imports: [CommonModule, CategoriasRoutingModule, TreeModule, CardModule]
 })
-export class CategoriasModule { }
+export class CategoriasModule {}

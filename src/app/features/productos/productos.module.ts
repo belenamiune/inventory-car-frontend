@@ -24,12 +24,7 @@ import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 
 @NgModule({
-  declarations: [
-    ProductosComponent,
-    ListadoComponent,
-    ProductoFormComponent,
-    DetalleComponent
-  ],
+  declarations: [ProductosComponent, ListadoComponent, ProductoFormComponent, DetalleComponent],
   imports: [
     CommonModule,
     ProductosRoutingModule,
@@ -51,4 +46,4 @@ import { TagModule } from 'primeng/tag';
   ],
   providers: [ConfirmationService]
 })
-export class ProductosModule { }
+export class ProductosModule {}

@@ -18,13 +18,13 @@ export class AuthEffects {
       ofType(AuthActions.login),
       mergeMap(({ credentials }) =>
         this.authService.login(credentials).pipe(
-          map((response) =>
+          map(response =>
             AuthActions.loginSuccess({
               token: response.token,
-              email: credentials.email,
+              email: credentials.email
             })
           ),
-          catchError((error) =>
+          catchError(error =>
             of(AuthActions.loginFailure({ error: error.error?.error || 'Error en login' }))
           )
         )
@@ -50,7 +50,7 @@ export class AuthEffects {
       mergeMap(({ credentials }) =>
         this.authService.register(credentials).pipe(
           map(() => AuthActions.registerSuccess()),
-          catchError((error) =>
+          catchError(error =>
             of(AuthActions.registerFailure({ error: error.error?.error || 'Error en registro' }))
           )
         )

@@ -13,86 +13,77 @@ export class ProductosEffects {
 
   loadProductos$ = createEffect(() =>
     this.actions$.pipe(
-        ofType(ProductosActions.loadProductos),
-        mergeMap(() =>
+      ofType(ProductosActions.loadProductos),
+      mergeMap(() =>
         this.productosService.getAll().pipe(
-            map((response) =>
+          map(response =>
             ProductosActions.loadProductosSuccess({
-                productos: response.data,
-                total: response.total
+              productos: response.data,
+              total: response.total
             })
-            ),
-            catchError((error) =>
-            of(ProductosActions.loadProductosFailure({ error: error.message }))
-            )
-        )
-        )
-    )
-    );
-
-
-    loadPaginated$ = createEffect(() =>
-    this.actions$.pipe(
-        ofType(ProductosActions.loadPaginatedProductos),
-        mergeMap(({ limit, offset, nombre, categoria }) =>
-        this.productosService.getPaginated(limit, offset, nombre, categoria).pipe(
-            map((response) =>
-            ProductosActions.loadProductosSuccess({
-                productos: response.data,
-                total: response.total,
-            })
-            ),
-            catchError((error) =>
-            of(ProductosActions.loadProductosFailure({ error: error.message }))
-            )
-        )
-        )
-    )
-    );
-
- createProducto$ = createEffect(() =>
-    this.actions$.pipe(
-        ofType(ProductosActions.createProducto),
-        mergeMap(({ producto }) =>
-        this.productosService.create(producto).pipe(
-            map((nuevo) => ProductosActions.createProductoSuccess({ producto: nuevo })),
-            catchError((err) =>
-            of(ProductosActions.createProductoFailure({ error: err.message }))
-            )
-        )
-        )
-    )
-    );
-
- updateProducto$ = createEffect(() =>
-    this.actions$.pipe(
-        ofType(ProductosActions.updateProducto),
-        mergeMap(({ producto }) =>
-        this.productosService.update(producto).pipe(
-            map((actualizado) =>
-            ProductosActions.updateProductoSuccess({ producto: actualizado })
-            ),
-            catchError((err) =>
-            of(ProductosActions.updateProductoFailure({ error: err.message }))
-            )
-        )
-        )
-    )
-    );
-
-deleteProducto$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(ProductosActions.deleteProducto),
-    mergeMap(({ id }) =>
-      this.productosService.delete(id).pipe(
-        map(() => ProductosActions.deleteProductoSuccess({ id })),
-        catchError((err) =>
-          of(ProductosActions.deleteProductoFailure({ error: err.message }))
+          ),
+          catchError(error => of(ProductosActions.loadProductosFailure({ error: error.message })))
         )
       )
     )
-  )
-);
+  );
 
+  loadPaginated$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductosActions.loadPaginatedProductos),
+      mergeMap(({ limit, offset, nombre, categoria }) =>
+        this.productosService.getPaginated(limit, offset, nombre, categoria).pipe(
+          map(response =>
+            ProductosActions.loadProductosSuccess({
+              productos: response.data,
+              total: response.total
+            })
+          ),
+          catchError(error =>
+            of(
+              ProductosActions.loadProductosFailure({
+                error: error.message || 'Error al cargar los prodcutos'
+              })
+            )
+          )
+        )
+      )
+    )
+  );
 
+  createProducto$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductosActions.createProducto),
+      mergeMap(({ producto }) =>
+        this.productosService.create(producto).pipe(
+          map(nuevo => ProductosActions.createProductoSuccess({ producto: nuevo })),
+          catchError(err => of(ProductosActions.createProductoFailure({ error: err.message })))
+        )
+      )
+    )
+  );
+
+  updateProducto$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductosActions.updateProducto),
+      mergeMap(({ producto }) =>
+        this.productosService.update(producto).pipe(
+          map(actualizado => ProductosActions.updateProductoSuccess({ producto: actualizado })),
+          catchError(err => of(ProductosActions.updateProductoFailure({ error: err.message })))
+        )
+      )
+    )
+  );
+
+  deleteProducto$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductosActions.deleteProducto),
+      mergeMap(({ id }) =>
+        this.productosService.delete(id).pipe(
+          map(() => ProductosActions.deleteProductoSuccess({ id })),
+          catchError(err => of(ProductosActions.deleteProductoFailure({ error: err.message })))
+        )
+      )
+    )
+  );
 }

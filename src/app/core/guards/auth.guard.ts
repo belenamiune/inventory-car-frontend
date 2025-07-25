@@ -5,14 +5,17 @@ import { Observable, map } from 'rxjs';
 import { selectAuthToken } from '../../store/auth/auth.selector';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store, private router: Router) {}
+  constructor(
+    private store: Store,
+    private router: Router
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.store.select(selectAuthToken).pipe(
-      map((token) => {
+      map(token => {
         const tokenFromStorage = token || localStorage.getItem('token');
 
         if (tokenFromStorage) {
