@@ -58,7 +58,7 @@ Este proyecto forma parte de un sistema completo
 | Parte     | Repo                                         |
 |-----------|----------------------------------------------|
 | Frontend  | [inventory-car-frontend](https://github.com/belenamiune/inventory-car-frontend)        |
-| Backend   | [inventory-car-backend](https://github.com/belenamiune/inventory-car-frontend)        
+| Backend   | [inventory-car-backend](https://github.com/belenamiune/inventory-car-backend)        
 
  
 ## Author
