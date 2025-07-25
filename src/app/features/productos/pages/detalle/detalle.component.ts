@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Producto } from '../../models/producto.model';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { selectAllProductos } from '../../../../store/productos/productos.selector';
-import { ProductosService } from '../../services/productos.service';
-import { MovimientosService } from '../../services/movimientos.service';
-import { Movimiento } from 'src/app/shared/models/movimiento.model';
+
+import { Producto } from '@features/productos/models/producto.model';
+import { selectAllProductos } from '@features/productos/store/productos.selector';
+
+import { ProductosService } from '@features/productos/services/productos.service';
+import { MovimientosService } from '@features/productos/services/movimientos.service';
+import { Movimiento } from '@shared/models/movimiento.model';
 
 @Component({
   selector: 'app-detalle',

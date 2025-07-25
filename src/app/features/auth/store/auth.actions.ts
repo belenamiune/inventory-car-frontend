@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { LoginPayload, RegisterPayload } from '../../../app/features/auth/models/auth.model';
+import { LoginPayload, RegisterPayload } from '@features/auth/models/auth.model';
 
 export const login = createAction('[Auth] Login', props<{ credentials: LoginPayload }>());
 

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Categoria } from 'src/app/shared/models/categoria.model';
-import { Producto } from 'src/app/features/productos/models/producto.model';
+import { Categoria } from '@shared/models/categoria.model';
+import { Producto } from '@features/productos/models/producto.model';
 
 @Component({
   selector: 'app-producto-form',
@@ -10,7 +10,7 @@ import { Producto } from 'src/app/features/productos/models/producto.model';
 export class ProductoFormComponent implements OnChanges {
   @Input() visible = false;
   @Input() categorias: Categoria[] = [];
-  @Input() producto: Producto | null = null; // Si viene algo, es edición
+  @Input() producto: Producto | null = null;
   @Output() cerrar = new EventEmitter<void>();
   @Output() guardar = new EventEmitter<Producto>();
 
@@ -35,8 +35,8 @@ export class ProductoFormComponent implements OnChanges {
   onSubmit() {
     if (this.form.invalid) return;
     this.guardar.emit({
-      _id: this.producto!._id,
-      ...this.form.value
+        ...(this.producto?._id ? { _id: this.producto._id } : {}),
+        ...this.form.value
     } as unknown as Producto);
   }
 

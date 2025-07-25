@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArbolComponent } from './arbol.component';
+import { ArbolComponent } from '@features/categorias/pages/arbol/arbol.component';
 
 describe('ArbolComponent', () => {
   let component: ArbolComponent;

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { register } from '../../../../store/auth/auth.actions';
-import { selectAuthLoading, selectAuthError } from '../../../../store/auth/auth.selector';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { register,  selectAuthLoading, selectAuthError } from '@features/auth/store';
 
 @Component({
   selector: 'app-register',

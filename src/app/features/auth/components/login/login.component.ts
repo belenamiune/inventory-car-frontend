@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { login } from '../../../../store/auth/auth.actions';
-import { selectAuthLoading, selectAuthError } from '../../../../store/auth/auth.selector';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { login, selectAuthLoading, selectAuthError } from '@features/auth/store';
 
 @Component({
   selector: 'app-login',

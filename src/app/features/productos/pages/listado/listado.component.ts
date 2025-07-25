@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ConfirmationService } from 'primeng/api';
+
 import {
   createProducto,
   loadPaginatedProductos,
   updateProducto,
-  deleteProducto
-} from '../../../../store/productos/productos.actions';
-import {
+  deleteProducto,
   selectAllProductos,
   selectProductosError,
   selectProductosLoading,
   selectProductosState
-} from '../../../../store/productos/productos.selector';
-import { Observable } from 'rxjs';
-import { Producto } from '../../models/producto.model';
-import { map } from 'rxjs/operators';
-import { Categoria } from 'src/app/shared/models/categoria.model';
-import { CategoriasService } from '../../../categorias/services/categorias.service';
-import { ConfirmationService } from 'primeng/api';
-import { Router } from '@angular/router';
+} from '@features/productos/store';
+
+import { Producto } from '@features/productos/models/producto.model';
+import { Categoria } from '@shared/models/categoria.model';
+import { CategoriasService } from '@features/categorias/services/categorias.service';
 
 @Component({
   selector: 'app-productos-listado',
@@ -104,6 +104,8 @@ export class ListadoComponent implements OnInit {
   }
 
   confirmarEliminar(producto: Producto) {
+    console.log('Abriendo confirmación para', producto.nombre);
+
     this.confirmationService.confirm({
       message: `¿Estás segura de eliminar "${producto.nombre}"?`,
       acceptLabel: 'Eliminar',

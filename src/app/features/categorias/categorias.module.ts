@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { CategoriasRoutingModule } from './categorias-routing.module';
-import { CategoriasComponent } from './categorias.component';
-import { ArbolComponent } from './pages/arbol/arbol.component';
+import { CategoriasRoutingModule } from '@features/categorias/categorias-routing.module';
+import { CategoriasComponent } from '@features/categorias/categorias.component';
+import { ArbolComponent } from '@features/categorias/pages/arbol/arbol.component';
 
-import { TreeModule } from 'primeng/tree';
-import { CardModule } from 'primeng/card';
+
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [CategoriasComponent, ArbolComponent],
-  imports: [CommonModule, CategoriasRoutingModule, TreeModule, CardModule]
+  imports: [SharedModule, CategoriasRoutingModule, CommonModule
+  ]
 })
 export class CategoriasModule {}

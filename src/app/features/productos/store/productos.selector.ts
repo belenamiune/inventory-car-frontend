@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ProductosState } from './productos.state';
+import { ProductosState } from '@features/productos/store';
 
 export const selectProductosState = createFeatureSelector<ProductosState>('productos');
 

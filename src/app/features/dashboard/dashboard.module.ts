@@ -1,23 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
-import { HomeComponent } from './pages/home/home.component';
-import { CardModule } from 'primeng/card';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { MessagesModule } from 'primeng/messages';
-import { NgChartsModule } from 'ng2-charts';
-
+import { DashboardRoutingModule } from '@features/dashboard/dashboard-routing.module';
+import { DashboardComponent } from '@features/dashboard/dashboard.component';
+import { SharedModule } from '@shared/shared.module';
 @NgModule({
-  declarations: [DashboardComponent, HomeComponent],
+  declarations: [DashboardComponent],
   imports: [
+    SharedModule,
     CommonModule,
-    MessagesModule,
-    ProgressSpinnerModule,
-    CardModule,
     DashboardRoutingModule,
-    NgChartsModule
   ]
 })
 export class DashboardModule {}

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import * as ProductosActions from './productos.actions';
-import { initialProductosState } from './productos.state';
+import * as ProductosActions from '@features/productos/store';
+import { initialProductosState } from 'src/app/features/productos/store/productos.state';
 
 export const productosReducer = createReducer(
   initialProductosState,

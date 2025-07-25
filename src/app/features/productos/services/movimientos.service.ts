@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movimiento } from 'src/app/shared/models/movimiento.model';
 import { Observable } from 'rxjs';
+
+import { Movimiento } from '@shared/models/movimiento.model';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovimientosService {
-  private baseUrl = 'http://localhost:4000/api/movimientos';
+  
+  private baseUrl = `${environment.apiUrl}/productos`;    
 
   constructor(private http: HttpClient) {}
 

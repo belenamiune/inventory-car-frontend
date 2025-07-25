@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/api';
-import { Categoria } from 'src/app/shared/models/categoria.model';
-import { CategoriasService } from '../../services/categorias.service';
+import { Categoria } from '@shared/models/categoria.model';
+import { CategoriasService } from '@features/categorias/services/categorias.service';
 
 @Component({
   selector: 'app-arbol',

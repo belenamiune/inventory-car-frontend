@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { selectTheme } from './store/ui/ui.selectors';
 import { Store } from '@ngrx/store';
+import { selectTheme } from '@store/theme';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +17,6 @@ export class AppComponent {
       document.body.classList.remove('light-theme', 'dark-theme');
       document.body.classList.add(`${theme}-theme`);
     });
+    
   }
 }

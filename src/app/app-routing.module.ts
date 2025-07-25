@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
-import { PrivateLayoutComponent } from './layouts/private-layout/private-layout.component';
-import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
-import { DetalleComponent } from './features/productos/pages/detalle/detalle.component';
+
+import { AuthGuard } from '@core/guards/auth.guard';
+import { PrivateLayoutComponent } from '@layouts/private-layout/private-layout.component';
+import { PublicLayoutComponent } from '@layouts/public-layout/public-layout.component';
+import { DetalleComponent } from '@features/productos/pages/detalle/detalle.component';
 
 const routes: Routes = [
   {

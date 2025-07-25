@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { logout } from 'src/app/store/auth/auth.actions';
-import { toggleTheme } from 'src/app/store/ui/ui.actions';
-import { selectTheme } from 'src/app/store/ui/ui.selectors';
+import { logout } from '@features/auth/store';
+import { toggleTheme, selectTheme } from '@store/theme';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +15,7 @@ export class NavbarComponent {
   routes = [
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/productos', label: 'Productos' },
-    { path: '', label: 'Categorías' }
+    { path: '/', label: 'Categorías' } // sin implementar
   ];
 
   constructor(

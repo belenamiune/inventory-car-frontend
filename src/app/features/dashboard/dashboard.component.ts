@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
 import {
   selectTotalProductos,
   selectStockBajo,
   selectValorInventario,
   selectProductosLoading,
-  selectProductosState
-} from '../../store/productos/productos.selector';
-import { loadProductos } from '../../store/productos/productos.actions';
-import { map, Observable } from 'rxjs';
+  selectProductosState,
+  loadProductos
+} from '@features/productos/store';
 
 @Component({
   selector: 'app-dashboard-home',

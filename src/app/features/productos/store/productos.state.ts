@@ -1,4 +1,4 @@
-import { Producto } from '../../features/productos/models/producto.model';
+import { Producto } from '@features/productos/models/producto.model';
 
 export interface ProductosState {
   productos: Producto[];

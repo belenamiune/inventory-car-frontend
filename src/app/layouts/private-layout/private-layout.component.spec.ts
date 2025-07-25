@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrivateLayoutComponent } from './private-layout.component';
+import { PrivateLayoutComponent } from '@layouts/private-layout/private-layout.component';
 
 describe('PrivateLayoutComponent', () => {
   let component: PrivateLayoutComponent;
