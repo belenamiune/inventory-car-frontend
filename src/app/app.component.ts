@@ -13,10 +13,11 @@ export class AppComponent {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.select(selectTheme).subscribe(theme => {
-      document.body.classList.remove('light-theme', 'dark-theme');
-      document.body.classList.add(`${theme}-theme`);
-    });
-    
-  }
+  this.store.select(selectTheme).subscribe(theme => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark'); // Tailwind necesita esto
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })}
 }

@@ -75,7 +75,6 @@ export class ListadoComponent implements OnInit {
   }
 
   verDetalle(producto: any) {
-    console.log('pase', producto);
     this.router.navigate(['/productos', producto._id]);
   }
 
@@ -107,7 +106,6 @@ export class ListadoComponent implements OnInit {
   }
 
   confirmarEliminar(producto: Producto) {
-    console.log('Abriendo confirmación para', producto.nombre);
 
     this.confirmationService.confirm({
       message: `¿Estás segura de eliminar "${producto.nombre}"?`,

@@ -37,6 +37,6 @@ export class LoginComponent {
   }
 
   irARegistro() {
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/auth/register']);
   }
 }
