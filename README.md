@@ -42,8 +42,8 @@ ng serve
 ```
 
 ## Demo
-![Login](src/app/assets/readme/imagenes/login.png)
-
+![Login](imagenes/login.png)
+![Registro](imagenes/registro.png)
 
  
 ## Author
