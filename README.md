@@ -50,6 +50,16 @@ ng serve
 ![Edicion](imagenes/edicion.png)
 ![Eliminacion](imagenes/eliminacion.png)
 ![Detalle](imagenes/detalle.png)
+
+
+## Repositorios del proyecto
+Este proyecto forma parte de un sistema completo
+
+| Parte     | Repo                                         |
+|-----------|----------------------------------------------|
+| Frontend  | [inventory-car-frontend](https://github.com/belenamiune/inventory-car-frontend)        |
+| Backend   | [inventory-car-backend](https://github.com/belenamiune/inventory-car-frontend)        
+
  
 ## Author
 - [@belenamiune](https://github.com/belenamiune)
