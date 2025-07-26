@@ -18,7 +18,6 @@ import {
 
 import { Producto } from '@features/productos/models/producto.model';
 import { Categoria } from '@shared/models/categoria.model';
-import { CategoriasService } from '@features/categorias/services/categorias.service';
 import { selectCategorias } from '@app/features/categorias/store/categorias.selectors';
 import { loadCategorias } from '@app/features/categorias/store';
 
@@ -44,7 +43,6 @@ export class ListadoComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private categoriasService: CategoriasService,
     private confirmationService: ConfirmationService,
     private router: Router
   ) {}
