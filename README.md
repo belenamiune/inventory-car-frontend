@@ -67,6 +67,13 @@ Este proyecto forma parte de un sistema completo
 | Frontend | [inventory-car-frontend](https://github.com/belenamiune/inventory-car-frontend) |
 | Backend  | [inventory-car-backend](https://github.com/belenamiune/inventory-car-backend)   |
 
+## Usuario de prueba
+
+```bash
+Email: testing@testing.com
+Contraseña: 12345678
+```
+
 ## Author
 
 - [@belenamiune](https://github.com/belenamiune)
