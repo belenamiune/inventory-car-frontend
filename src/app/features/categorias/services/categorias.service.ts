@@ -22,7 +22,6 @@ private baseUrl = `${environment.apiUrl}/categorias`;
     });
     }
 
-
     create(categoria: Categoria) {
     return this.http.post<Categoria>(`${this.baseUrl}/`, categoria);
     }
@@ -34,5 +33,4 @@ private baseUrl = `${environment.apiUrl}/categorias`;
     delete(id: string) {
     return this.http.delete(`${this.baseUrl}/${id}`);
     }
-
 }

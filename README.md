@@ -22,7 +22,7 @@ Aplicación web para la gestión de inventario de un taller mecánico. Desarroll
 
   10. Responsive design
 
-  11. Pruebas unitarias
+  11. Pruebas unitarias con coverage
 
 ## Tecnologías utilizadas
 - Angular 14

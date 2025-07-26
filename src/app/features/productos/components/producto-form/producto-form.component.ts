@@ -19,7 +19,7 @@ export class ProductoFormComponent implements OnChanges {
     precio: [null, [Validators.required, Validators.min(0)]],
     stock: [null, [Validators.required, Validators.min(0)]],
     imagenUrl: [''],
-    categorias: [[]]
+    categorias: [[] as Categoria[]]
   });
 
   constructor(private fb: FormBuilder) {}
