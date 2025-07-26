@@ -106,7 +106,7 @@
 
           <td>
             <span *ngIf="producto.categorias?.length; else sinCategoria">
-              {{ producto.categorias[0]?.nombre }}
+               {{ getNombresCategorias(producto.categorias) }}
             </span>
             <ng-template #sinCategoria>---</ng-template>
           </td>

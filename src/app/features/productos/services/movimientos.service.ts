@@ -9,7 +9,7 @@ import { environment } from '@env/environment';
   providedIn: 'root'
 })
 export class MovimientosService {
-  private baseUrl = `${environment.apiUrl}/productos`;
+  private baseUrl = `${environment.apiUrl}/movimientos`;
 
   constructor(private http: HttpClient) {}
 

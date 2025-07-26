@@ -52,6 +52,10 @@ export class ListadoComponent implements OnInit {
     this.store.dispatch(loadCategorias());
   }
 
+  getNombresCategorias(categorias: Categoria[]): string {
+    return categorias.map(c => c.nombre).join(', ');
+    }
+
   loadPage(offset: number) {
     this.store.dispatch(
       loadPaginatedProductos({
