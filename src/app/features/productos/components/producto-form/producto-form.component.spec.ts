@@ -114,7 +114,7 @@ describe('ProductoFormComponent', () => {
       expect(component.guardar.emit).not.toHaveBeenCalled();
     });
 
-    it('should emit producto when form is valid (crear)', () => {
+    it('should emit producto when form is valid', () => {
       spyOn(component.guardar, 'emit');
 
       component.form.setValue({
