@@ -1,0 +1,54 @@
+<p-dialog
+  header="{{ categoria ? 'Editar Categoría' : 'Nueva Categoría' }}"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '100%', maxWidth: '520px' }"
+  [contentStyle]="{ 'max-height': '85vh', 'overflow-y': 'auto', padding: '1rem' }"
+  [dismissableMask]="true"
+  (onHide)="onHide()"
+  class="rounded-xl animate-fade-in"
+>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
+    <!-- Nombre -->
+    <div class="field">
+      <label for="nombre" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
+      <input id="nombre" pInputText formControlName="nombre" class="w-full" />
+    </div>
+
+    <!-- Padre -->
+    <div class="field mt-3">
+      <label for="padre" class="block text-sm text-gray-700 dark:text-gray-300 mb-1">Categoría Padre</label>
+      <p-dropdown
+        id="padre"
+        formControlName="padre"
+        [options]="categorias"
+        optionLabel="nombre"
+        optionValue="_id"
+        [showClear]="true"
+        placeholder="Seleccionar..."
+        class="w-full"
+        [filter]="true"
+        [appendTo]="'body'"
+      ></p-dropdown>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-4 flex justify-end gap-2">
+      <button
+        pButton
+        type="button"
+        label="Cancelar"
+        class="p-button-outlined p-button-secondary"
+        (click)="onHide()"
+      ></button>
+
+      <button
+        pButton
+        label="Guardar"
+        type="submit"
+        [disabled]="form.invalid"
+        class="p-button-success"
+      ></button>
+    </div>
+  </form>
+</p-dialog>

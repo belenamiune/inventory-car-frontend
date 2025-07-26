@@ -15,7 +15,7 @@ export class NavbarComponent {
   routes = [
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/productos', label: 'Productos' },
-    { path: '/', label: 'Categorías' } // sin implementar
+    { path: '/categorias', label: 'Categorías' }
   ];
 
   constructor(

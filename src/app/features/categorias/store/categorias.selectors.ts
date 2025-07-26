@@ -12,3 +12,8 @@ export const selectCategoriasLoading = createSelector(
   selectCategoriaState,
   (state) => state.loading
 );
+
+export const selectCategoriasTotal = createSelector(
+  selectCategoriaState,
+  (state) => state.total
+);
