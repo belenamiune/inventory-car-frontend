@@ -1,39 +1,41 @@
 # Inventario - Frontend
-Aplicación web para la gestión de inventario de un taller mecánico. Desarrollada con Angular 14, PrimeNG, NGRX y RxJS.
 
+Aplicación web para la gestión de inventario de un taller mecánico. Desarrollada con Angular 14, PrimeNG, NGRX y RxJS.
 
 ## Funcionalidades
 
-  1. Dashboard con KPIs y gráfico de categorías
+1. Dashboard con KPIs y gráfico de categorías
 
-  2. Listado de productos con paginación y filtros
+2. Listado de productos con paginación y filtros
 
-  3. Búsqueda por nombre y categoría
+3. Búsqueda por nombre y categoría
 
-  4. Crear, editar y eliminar productos
+4. Crear, editar y eliminar productos
 
-  6. Modo oscuro
+5. Modo oscuro
 
-  7. Vista detallada de productos con historial de movimientos
+6. Vista detallada de productos con historial de movimientos
 
-  8. Validaciones en formularios
+7. Validaciones en formularios
 
-  9. Autenticación 
+8. Autenticación
 
-  10. Responsive design
+9. Responsive design
 
-  11. Pruebas unitarias con coverage
+10. Pruebas unitarias con coverage
 
 ## Tecnologías utilizadas
+
 - Angular 14
 - PrimeNG
 - NGRX (Store, Effects)
 - RxJS
 - TailwindCSS
-- Chart.js 
+- Chart.js
 - TypeScript
 
 ## Instalación
+
 ```
 git clone https://github.com/belenamiune/inventory-car-frontend
 cd challenge-project
@@ -42,6 +44,7 @@ ng serve
 ```
 
 ## Demo
+
 ![Login](imagenes/login.png)
 ![Registro](imagenes/registro.png)
 ![Dashboard](imagenes/dashboard.png)
@@ -51,16 +54,15 @@ ng serve
 ![Eliminacion](imagenes/eliminacion.png)
 ![Detalle](imagenes/detalle.png)
 
-
 ## Repositorios del proyecto
+
 Este proyecto forma parte de un sistema completo
 
-| Parte     | Repo                                         |
-|-----------|----------------------------------------------|
-| Frontend  | [inventory-car-frontend](https://github.com/belenamiune/inventory-car-frontend)        |
-| Backend   | [inventory-car-backend](https://github.com/belenamiune/inventory-car-backend)        
+| Parte    | Repo                                                                            |
+| -------- | ------------------------------------------------------------------------------- |
+| Frontend | [inventory-car-frontend](https://github.com/belenamiune/inventory-car-frontend) |
+| Backend  | [inventory-car-backend](https://github.com/belenamiune/inventory-car-backend)   |
 
- 
 ## Author
-- [@belenamiune](https://github.com/belenamiune)
 
+- [@belenamiune](https://github.com/belenamiune)

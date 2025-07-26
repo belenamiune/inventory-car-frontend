@@ -9,14 +9,9 @@ import { DetalleComponent } from '@features/productos/pages/detalle/detalle.comp
 import { SharedModule } from '@shared/shared.module';
 import { CommonModule } from '@angular/common';
 
-
 @NgModule({
   declarations: [ProductosComponent, ListadoComponent, ProductoFormComponent, DetalleComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ProductosRoutingModule
-  ],
+  imports: [CommonModule, SharedModule, ProductosRoutingModule],
   providers: []
 })
 export class ProductosModule {}

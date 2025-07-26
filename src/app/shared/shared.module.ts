@@ -1,4 +1,3 @@
-
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
@@ -8,7 +7,6 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { PrivateLayoutComponent } from '@layouts/private-layout/private-layout.component';
 import { PublicLayoutComponent } from '@layouts/public-layout/public-layout.component';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
-
 
 import { MenubarModule } from 'primeng/menubar';
 import { ToggleButtonModule } from 'primeng/togglebutton';
@@ -33,11 +31,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    PublicLayoutComponent,
-    PrivateLayoutComponent
-  ],
+  declarations: [NavbarComponent, PublicLayoutComponent, PrivateLayoutComponent],
   imports: [
     CommonModule,
     MenubarModule,

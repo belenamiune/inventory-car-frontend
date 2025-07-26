@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Categoria } from '@shared/models/categoria.model';
 
@@ -43,10 +36,9 @@ export class CategoriaFormComponent implements OnChanges {
     if (this.form.invalid) return;
 
     this.guardar.emit({
-        ...(this.categoria?._id ? { _id: this.categoria._id } : {}),
-        ...this.form.value
-        } as Categoria);
-
+      ...(this.categoria?._id ? { _id: this.categoria._id } : {}),
+      ...this.form.value
+    } as Categoria);
   }
 
   onHide() {

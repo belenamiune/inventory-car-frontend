@@ -46,14 +46,16 @@ const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
       },
       { metaReducers }
     ),
-    EffectsModule.forRoot([ProductosEffects, AuthEffects, CategoriasEffects ])
+    EffectsModule.forRoot([ProductosEffects, AuthEffects, CategoriasEffects])
   ],
 
-  providers: [{
+  providers: [
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -38,17 +38,17 @@ module.exports = function (config) {
     singleRun: false,
     restartOnFileChange: true,
     coverageReporter: {
-        dir: require('path').join(__dirname, './coverage/challenge-project'),
-        subdir: '.',
-        reporters: [{ type: 'html' }, { type: 'text-summary' }],
-        check: {
-            global: {
-            statements: 80,
-            branches: 80,
-            functions: 80,
-            lines: 80,
-            },
-        },
+      dir: require('path').join(__dirname, './coverage/challenge-project'),
+      subdir: '.',
+      reporters: [{ type: 'html' }, { type: 'text-summary' }],
+      check: {
+        global: {
+          statements: 80,
+          branches: 80,
+          functions: 80,
+          lines: 80
+        }
+      }
     }
   });
 };

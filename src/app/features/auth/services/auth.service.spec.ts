@@ -41,7 +41,7 @@ describe('AuthService', () => {
     const req = httpMock.expectOne(`${baseUrl}/login`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(mockPayload);
-    req.flush(mockResponse); 
+    req.flush(mockResponse);
   });
 
   it('should call POST /register and return success response', () => {

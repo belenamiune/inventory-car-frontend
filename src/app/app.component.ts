@@ -13,11 +13,12 @@ export class AppComponent {
   constructor(private store: Store) {}
 
   ngOnInit() {
-  this.store.select(selectTheme).subscribe(theme => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  })}
+    this.store.select(selectTheme).subscribe(theme => {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    });
+  }
 }

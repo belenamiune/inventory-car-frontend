@@ -21,7 +21,9 @@ import {
   templateUrl: './listado-categorias.component.html'
 })
 export class ListadoCategoriasComponent implements OnInit {
-  categorias$: Observable<Categoria[]> = this.store.select(selectCategorias).pipe(map(c => c || []));
+  categorias$: Observable<Categoria[]> = this.store
+    .select(selectCategorias)
+    .pipe(map(c => c || []));
   loading$: Observable<boolean> = this.store.select(selectCategoriasLoading);
   total$: Observable<number> = this.store.select(selectCategoriasTotal);
 
@@ -96,10 +98,10 @@ export class ListadoCategoriasComponent implements OnInit {
 
   guardarCategoria(categoria: Categoria) {
     if (categoria._id) {
-        this.store.dispatch(updateCategoria({ categoria }));
+      this.store.dispatch(updateCategoria({ categoria }));
     } else {
-        this.store.dispatch(createCategoria({ categoria }));
+      this.store.dispatch(createCategoria({ categoria }));
     }
     this.cerrarModal();
-    }
+  }
 }

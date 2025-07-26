@@ -4,11 +4,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 
-import {
-  loadPaginatedProductos,
-  createProducto,
-  updateProducto,
-} from '@features/productos/store';
+import { loadPaginatedProductos, createProducto, updateProducto } from '@features/productos/store';
 
 import { loadCategorias } from '@app/features/categorias/store';
 
@@ -24,10 +20,10 @@ describe('ListadoComponent', () => {
       productos: [],
       loading: false,
       error: null,
-      total: 0,
+      total: 0
     },
     categorias: {
-      categorias: [],
+      categorias: []
     }
   };
 
@@ -40,13 +36,15 @@ describe('ListadoComponent', () => {
       providers: [
         provideMockStore({ initialState }),
         { provide: Router, useValue: routerSpy },
-        { provide: ConfirmationService, useValue: confirmationSpy },
+        { provide: ConfirmationService, useValue: confirmationSpy }
       ]
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
     router = TestBed.inject(Router);
-    confirmationService = TestBed.inject(ConfirmationService) as jasmine.SpyObj<ConfirmationService>;
+    confirmationService = TestBed.inject(
+      ConfirmationService
+    ) as jasmine.SpyObj<ConfirmationService>;
     fixture = TestBed.createComponent(ListadoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -59,12 +57,14 @@ describe('ListadoComponent', () => {
   it('debería llamar a loadPage y loadCategorias al iniciar', () => {
     const dispatchSpy = spyOn(store, 'dispatch');
     component.ngOnInit();
-    expect(dispatchSpy).toHaveBeenCalledWith(loadPaginatedProductos({
-      limit: component.rows,
-      offset: 0,
-      nombre: '',
-      categoria: ''
-    }));
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      loadPaginatedProductos({
+        limit: component.rows,
+        offset: 0,
+        nombre: '',
+        categoria: ''
+      })
+    );
     expect(dispatchSpy).toHaveBeenCalledWith(loadCategorias());
   });
 
@@ -123,10 +123,10 @@ describe('ListadoComponent', () => {
     expect(dispatchSpy).toHaveBeenCalledWith(updateProducto({ producto: productoMock }));
   });
 
-it('debería confirmar eliminación con ConfirmationService', () => {
-  const productoMock = { _id: '123', nombre: 'Test Producto' } as any;
-  component.confirmarEliminar(productoMock);
-  expect(confirmationService.confirm).toHaveBeenCalled();
-  expect(confirmationService.confirm).toHaveBeenCalled();
-});
+  it('debería confirmar eliminación con ConfirmationService', () => {
+    const productoMock = { _id: '123', nombre: 'Test Producto' } as any;
+    component.confirmarEliminar(productoMock);
+    expect(confirmationService.confirm).toHaveBeenCalled();
+    expect(confirmationService.confirm).toHaveBeenCalled();
+  });
 });

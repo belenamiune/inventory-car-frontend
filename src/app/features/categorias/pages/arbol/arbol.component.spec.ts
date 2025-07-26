@@ -14,9 +14,7 @@ describe('ArbolComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [ArbolComponent],
-      providers: [
-        { provide: CategoriasService, useValue: mockCategoriasService }
-      ]
+      providers: [{ provide: CategoriasService, useValue: mockCategoriasService }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ArbolComponent);
@@ -30,7 +28,7 @@ describe('ArbolComponent', () => {
   it('should call getAll and set categoriasTree on ngOnInit', () => {
     const mockCategorias: Categoria[] = [
       { _id: '1', nombre: 'Padre' },
-      { _id: '2', nombre: 'Hijo', padre: '1' },
+      { _id: '2', nombre: 'Hijo', padre: '1' }
     ];
 
     mockCategoriasService.getAll.and.returnValue(of({ data: mockCategorias, total: 2 }));

@@ -28,15 +28,17 @@ describe('ProductosService', () => {
 
   it('should get all productos', () => {
     const mockResponse = {
-    data: [{
-        _id: '1',
-        nombre: 'Aceite',
-        precio: 1000,
-        stock: 25,
-        categoria: 'cat123',
-        descripcion: 'Aceite sintético',
-    }],
-    total: 1
+      data: [
+        {
+          _id: '1',
+          nombre: 'Aceite',
+          precio: 1000,
+          stock: 25,
+          categoria: 'cat123',
+          descripcion: 'Aceite sintético'
+        }
+      ],
+      total: 1
     };
 
     service.getAll().subscribe(res => {
@@ -62,14 +64,16 @@ describe('ProductosService', () => {
 
   it('should get paginated productos with filters', () => {
     const mockResponse = {
-      data: [{
-        _id: '1',
-        nombre: 'Aceite',
-        precio: 1000,
-        stock: 25,
-        categoria: 'cat123', 
-        descripcion: 'Aceite sintético',
-    }],
+      data: [
+        {
+          _id: '1',
+          nombre: 'Aceite',
+          precio: 1000,
+          stock: 25,
+          categoria: 'cat123',
+          descripcion: 'Aceite sintético'
+        }
+      ],
       total: 1
     };
 
@@ -77,12 +81,13 @@ describe('ProductosService', () => {
       expect(res).toEqual(mockResponse);
     });
 
-    const req = httpMock.expectOne(r =>
-      r.url === baseUrl &&
-      r.params.get('limit') === '10' &&
-      r.params.get('offset') === '0' &&
-      r.params.get('nombre') === 'Lubi' &&
-      r.params.get('categoria') === '123'
+    const req = httpMock.expectOne(
+      r =>
+        r.url === baseUrl &&
+        r.params.get('limit') === '10' &&
+        r.params.get('offset') === '0' &&
+        r.params.get('nombre') === 'Lubi' &&
+        r.params.get('categoria') === '123'
     );
 
     expect(req.request.method).toBe('GET');
@@ -91,9 +96,10 @@ describe('ProductosService', () => {
 
   it('should create a producto', () => {
     const mockProducto: Producto = {
-        _id: '1', nombre: 'Nuevo Producto',
-        precio: 0,
-        stock: 0
+      _id: '1',
+      nombre: 'Nuevo Producto',
+      precio: 0,
+      stock: 0
     };
 
     service.create(mockProducto).subscribe(res => {
@@ -108,9 +114,10 @@ describe('ProductosService', () => {
 
   it('should update a producto', () => {
     const mockProducto: Producto = {
-        _id: '1', nombre: 'Actualizado',
-        precio: 0,
-        stock: 0
+      _id: '1',
+      nombre: 'Actualizado',
+      precio: 0,
+      stock: 0
     };
 
     service.update(mockProducto).subscribe(res => {

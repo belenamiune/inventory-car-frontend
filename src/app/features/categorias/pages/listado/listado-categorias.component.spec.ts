@@ -127,8 +127,8 @@ describe('ListadoCategoriasComponent', () => {
 
   it('should dispatch createCategoria if categoria has no _id', () => {
     const categoria: Categoria = {
-        nombre: 'Nueva',
-        _id: ''
+      nombre: 'Nueva',
+      _id: ''
     };
     component.guardarCategoria(categoria);
     expect(dispatchSpy).toHaveBeenCalledWith(createCategoria({ categoria }));

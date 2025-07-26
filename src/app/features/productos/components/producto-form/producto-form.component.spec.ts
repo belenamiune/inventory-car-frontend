@@ -13,18 +13,18 @@ describe('ProductoFormComponent', () => {
     selector: 'p-multiSelect',
     template: '',
     providers: [
-        {
+      {
         provide: NG_VALUE_ACCESSOR,
         useExisting: DummyMultiSelectComponent,
         multi: true
-        }
+      }
     ]
-    })
-    class DummyMultiSelectComponent {
+  })
+  class DummyMultiSelectComponent {
     writeValue() {}
     registerOnChange() {}
     registerOnTouched() {}
-    }
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -43,10 +43,10 @@ describe('ProductoFormComponent', () => {
 
   describe('ngOnChanges', () => {
     it('should patch form when producto is provided', () => {
-        const mockCategoria: Categoria = {
-            _id: 'cat1',
-            nombre: 'Filtros'
-        };
+      const mockCategoria: Categoria = {
+        _id: 'cat1',
+        nombre: 'Filtros'
+      };
 
       const producto: Producto = {
         _id: '1',
@@ -67,7 +67,6 @@ describe('ProductoFormComponent', () => {
         }
       });
 
-      
       expect(component.form.value).toEqual({
         nombre: 'Aceite',
         precio: 1500 as any,

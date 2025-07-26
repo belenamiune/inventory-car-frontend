@@ -56,10 +56,7 @@ export const updateCategoriaFailure = createAction(
   props<{ error: any }>()
 );
 
-export const deleteCategoria = createAction(
-  '[Categorias] Delete',
-  props<{ id: string }>()
-);
+export const deleteCategoria = createAction('[Categorias] Delete', props<{ id: string }>());
 
 export const deleteCategoriaSuccess = createAction(
   '[Categorias] Delete Success',

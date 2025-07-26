@@ -1,178 +1,181 @@
-
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 px-3 md:px-5 py-4">
-<div class="flex flex-col md:flex-row mt-4 px-3 md:px-5 gap-4">
-  <!-- Panel principal -->
-  <div class="w-full md:w-3/4 flex flex-col gap-4">
-    <!-- Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-  <!-- Total de Productos -->
-  <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in">
-    <div class="flex items-center justify-between p-4">
-      <div>
-        <p class="text-sm text-gray-600 m-0">Total de Productos</p>
-        <h2 class="text-3xl font-semibold text-indigo-600 m-0">
-          {{ total$ | async }}
-          <span class="text-sm text-green-500 ml-2">↑ 5%</span>
-        </h2>
-      </div>
-      <div class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-2">
-        <i class="pi pi-box text-xl text-indigo-600"></i>
-      </div>
-    </div>
-  </p-card>
-
-  <!-- Stock Bajo -->
-  <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in">
-    <div class="flex items-center justify-between p-4">
-      <div>
-        <p class="text-sm text-gray-600 m-0">Stock Bajo (&lt; 5)</p>
-        <h2 class="text-3xl font-semibold text-orange-500 m-0">
-          {{ stockBajo$ | async }}
-          <span class="text-sm text-red-400 ml-2">↓ 2%</span>
-        </h2>
-      </div>
-      <div class="bg-orange-100 dark:bg-orange-900 rounded-full p-2">
-        <i class="pi pi-exclamation-triangle text-xl text-orange-500"></i>
-      </div>
-    </div>
-  </p-card>
-
-  <!-- Valor Inventario -->
-  <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in">
-    <div class="flex items-center justify-between p-4">
-      <div>
-        <p class="text-sm text-gray-600 m-0">Valor Inventario</p>
-        <h2 class="text-3xl font-semibold text-green-600">
-          $ {{ valorInventario$ | async | number: '1.0-0' }}
-          <span class="text-sm text-green-500 ml-2">↑ 3%</span>
-        </h2>
-      </div>
-      <div class="bg-green-100 dark:bg-green-900 rounded-full p-2">
-        <i class="pi pi-dollar text-xl text-green-600"></i>
-      </div>
-    </div>
-  </p-card>
-</div>
-
-    <!-- Gráfico: Productos por Categoría -->
-    <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl animate-fade-in delay-200">
-    <ng-template pTemplate="content">
-        <h3 class="text-lg font-semibold mb-3 text-gray-800">Productos por Categoría</h3>
-        <div style="height: 300px;">
-        <p-chart
-            type="bar"
-            [data]="productosPorCategoriaData"
-            [options]="productosPorCategoriaOptions"
-            styleClass="w-full"
-        ></p-chart>
-        </div>
-    </ng-template>
-    </p-card>
-
-    <!-- Spinner -->
-    <div *ngIf="loading$ | async" class="flex justify-center mt-5">
-    <p-progressSpinner strokeWidth="4"></p-progressSpinner>
-    </div>
-
-    <!-- Error -->
-    <p-messages
-    *ngIf="error$ | async as error"
-    [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
-    [closable]="true"
-    class="mt-3"
-    ></p-messages>
-
-    <!-- Spinner de carga -->
-    <div *ngIf="loading$ | async" class="flex justify-center mt-5">
-      <p-progressSpinner strokeWidth="4"></p-progressSpinner>
-    </div>
-
-    <!-- Mensaje de error -->
-    <p-messages
-      *ngIf="error$ | async as error"
-      [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
-      [closable]="true"
-      class="mt-3"
-    ></p-messages>
-  </div>
-
-  <!-- Panel lateral de Resumen -->
-  <div class="w-full md:w-1/4 flex flex-col gap-4">
-    <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl animate-fade-in delay-300">
-      <ng-template pTemplate="content">
-        <div class="p-4 flex flex-col gap-4">
-          <h3 class="text-lg font-semibold text-gray-800">Resumen</h3>
-
-          <!-- Item de resumen -->
-          <div class="flex items-center justify-between border-b pb-2">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-box text-indigo-500 text-lg"></i>
-              <span class="text-sm text-gray-500 ">SKU Total</span>
+  <div class="flex flex-col md:flex-row mt-4 px-3 md:px-5 gap-4">
+    <!-- Panel principal -->
+    <div class="w-full md:w-3/4 flex flex-col gap-4">
+      <!-- Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Total de Productos -->
+        <p-card
+          class="bg-white dark:bg-gray-800 shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in"
+        >
+          <div class="flex items-center justify-between p-4">
+            <div>
+              <p class="text-sm text-gray-600 m-0">Total de Productos</p>
+              <h2 class="text-3xl font-semibold text-indigo-600 m-0">
+                {{ total$ | async }}
+                <span class="text-sm text-green-500 ml-2">↑ 5%</span>
+              </h2>
             </div>
-            <span class="text-base font-bold text-indigo-600">
-              {{ total$ | async }}
-            </span>
-          </div>
-
-          <div class="flex items-center justify-between border-b pb-2">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-bookmark text-purple-500 text-lg"></i>
-              <span class="text-sm text-gray-500 ">Productos Reservados</span>
+            <div class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-2">
+              <i class="pi pi-box text-xl text-indigo-600"></i>
             </div>
-            <span class="text-base font-bold text-purple-600">234</span>
           </div>
+        </p-card>
 
-          <div class="flex items-center justify-between pb-1">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-exclamation-circle text-red-500 text-lg"></i>
-              <span class="text-sm text-gray-500">Stock con Problemas</span>
+        <!-- Stock Bajo -->
+        <p-card
+          class="bg-white dark:bg-gray-800 shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in"
+        >
+          <div class="flex items-center justify-between p-4">
+            <div>
+              <p class="text-sm text-gray-600 m-0">Stock Bajo (&lt; 5)</p>
+              <h2 class="text-3xl font-semibold text-orange-500 m-0">
+                {{ stockBajo$ | async }}
+                <span class="text-sm text-red-400 ml-2">↓ 2%</span>
+              </h2>
             </div>
-            <span class="text-base font-bold text-red-500">2</span>
+            <div class="bg-orange-100 dark:bg-orange-900 rounded-full p-2">
+              <i class="pi pi-exclamation-triangle text-xl text-orange-500"></i>
+            </div>
           </div>
+        </p-card>
 
-          <!-- Categorías -->
+        <!-- Valor Inventario -->
+        <p-card
+          class="bg-white dark:bg-gray-800 shadow-lg rounded-xl transform transition duration-300 hover:scale-105 hover:shadow-3xl animate-fade-in"
+        >
+          <div class="flex items-center justify-between p-4">
+            <div>
+              <p class="text-sm text-gray-600 m-0">Valor Inventario</p>
+              <h2 class="text-3xl font-semibold text-green-600">
+                $ {{ valorInventario$ | async | number: '1.0-0' }}
+                <span class="text-sm text-green-500 ml-2">↑ 3%</span>
+              </h2>
+            </div>
+            <div class="bg-green-100 dark:bg-green-900 rounded-full p-2">
+              <i class="pi pi-dollar text-xl text-green-600"></i>
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <!-- Gráfico: Productos por Categoría -->
+      <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl animate-fade-in delay-200">
+        <ng-template pTemplate="content">
+          <h3 class="text-lg font-semibold mb-3 text-gray-800">Productos por Categoría</h3>
+          <div style="height: 300px">
+            <p-chart
+              type="bar"
+              [data]="productosPorCategoriaData"
+              [options]="productosPorCategoriaOptions"
+              styleClass="w-full"
+            ></p-chart>
+          </div>
+        </ng-template>
+      </p-card>
+
+      <!-- Spinner -->
+      <div *ngIf="loading$ | async" class="flex justify-center mt-5">
+        <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+      </div>
+
+      <!-- Error -->
+      <p-messages
+        *ngIf="error$ | async as error"
+        [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
+        [closable]="true"
+        class="mt-3"
+      ></p-messages>
+
+      <!-- Spinner de carga -->
+      <div *ngIf="loading$ | async" class="flex justify-center mt-5">
+        <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+      </div>
+
+      <!-- Mensaje de error -->
+      <p-messages
+        *ngIf="error$ | async as error"
+        [value]="[{ severity: 'error', summary: 'Error', detail: error }]"
+        [closable]="true"
+        class="mt-3"
+      ></p-messages>
+    </div>
+
+    <!-- Panel lateral de Resumen -->
+    <div class="w-full md:w-1/4 flex flex-col gap-4">
+      <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl animate-fade-in delay-300">
+        <ng-template pTemplate="content">
+          <div class="p-4 flex flex-col gap-4">
+            <h3 class="text-lg font-semibold text-gray-800">Resumen</h3>
+
+            <!-- Item de resumen -->
+            <div class="flex items-center justify-between border-b pb-2">
+              <div class="flex items-center gap-2">
+                <i class="pi pi-box text-indigo-500 text-lg"></i>
+                <span class="text-sm text-gray-500">SKU Total</span>
+              </div>
+              <span class="text-base font-bold text-indigo-600">
+                {{ total$ | async }}
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between border-b pb-2">
+              <div class="flex items-center gap-2">
+                <i class="pi pi-bookmark text-purple-500 text-lg"></i>
+                <span class="text-sm text-gray-500">Productos Reservados</span>
+              </div>
+              <span class="text-base font-bold text-purple-600">234</span>
+            </div>
+
+            <div class="flex items-center justify-between pb-1">
+              <div class="flex items-center gap-2">
+                <i class="pi pi-exclamation-circle text-red-500 text-lg"></i>
+                <span class="text-sm text-gray-500">Stock con Problemas</span>
+              </div>
+              <span class="text-base font-bold text-red-500">2</span>
+            </div>
+
+            <!-- Categorías -->
             <div class="mt-4">
-            <p class="text-sm font-medium text-gray-700 mb-2">Categorías</p>
+              <p class="text-sm font-medium text-gray-700 mb-2">Categorías</p>
 
-            <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2">
                 <ng-container *ngIf="categorias$ | async as categorias">
-                <ng-container *ngIf="categorias.length > 0; else sinCategorias">
+                  <ng-container *ngIf="categorias.length > 0; else sinCategorias">
                     <span
-                        *ngFor="let cat of categorias"
-                        [ngClass]="[
-                            getCategoriaStyles(cat.nombre).bg,
-                            getCategoriaStyles(cat.nombre).text,
-                            'p-tag p-tag-rounded'
-                        ]"
-                        >
-                        <i class="{{ getCategoriaStyles(cat.nombre).icon }} mr-1"></i> {{ cat.nombre }}
-                        </span>
-                </ng-container>
+                      *ngFor="let cat of categorias"
+                      [ngClass]="[
+                        getCategoriaStyles(cat.nombre).bg,
+                        getCategoriaStyles(cat.nombre).text,
+                        'p-tag p-tag-rounded'
+                      ]"
+                    >
+                      <i class="{{ getCategoriaStyles(cat.nombre).icon }} mr-1"></i>
+                      {{ cat.nombre }}
+                    </span>
+                  </ng-container>
 
-                <ng-template #sinCategorias>
+                  <ng-template #sinCategorias>
                     <span class="text-sm text-gray-500">No hay categorías</span>
-                </ng-template>
+                  </ng-template>
                 </ng-container>
+              </div>
             </div>
-            </div>
-        </div>
-      </ng-template>
-    </p-card>
-    
-  <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl animate-fade-in delay-400">
-    <ng-template pTemplate="content">
-      <h3 class="text-sm font-semibold mb-3 text-gray-800">Distribución de Stock</h3>
-      <p-chart
-        type="pie"
-        [data]="stockChartData"
-        [options]="stockChartOptions"
-        styleClass="w-full max-w-xs mx-auto"
-      ></p-chart>
-    </ng-template>
-  </p-card>
-  </div>
-  
-  
-</div>
-</div>
+          </div>
+        </ng-template>
+      </p-card>
 
+      <p-card class="bg-white dark:bg-gray-800 shadow-lg rounded-xl animate-fade-in delay-400">
+        <ng-template pTemplate="content">
+          <h3 class="text-sm font-semibold mb-3 text-gray-800">Distribución de Stock</h3>
+          <p-chart
+            type="pie"
+            [data]="stockChartData"
+            [options]="stockChartOptions"
+            styleClass="w-full max-w-xs mx-auto"
+          ></p-chart>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

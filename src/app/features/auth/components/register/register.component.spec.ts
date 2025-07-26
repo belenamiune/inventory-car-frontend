@@ -32,7 +32,7 @@ describe('RegisterComponent', () => {
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store) as MockStore;;
+    store = TestBed.inject(Store) as MockStore;
     dispatchSpy = spyOn(store, 'dispatch');
     fixture.detectChanges();
   });
@@ -73,7 +73,7 @@ describe('RegisterComponent', () => {
     expect(routerSpy.navigate).toHaveBeenCalledWith(['auth/login']);
   });
 
-  it('should expose loading$ and error$', (done) => {
+  it('should expose loading$ and error$', done => {
     component.loading$.subscribe(val => {
       expect(val).toBeFalse();
       done();

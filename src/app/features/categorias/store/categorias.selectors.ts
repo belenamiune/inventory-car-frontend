@@ -3,17 +3,8 @@ import { CategoriaState } from './categorias.reducer';
 
 export const selectCategoriaState = createFeatureSelector<CategoriaState>('categorias');
 
-export const selectCategorias = createSelector(
-  selectCategoriaState,
-  (state) => state.categorias
-);
+export const selectCategorias = createSelector(selectCategoriaState, state => state.categorias);
 
-export const selectCategoriasLoading = createSelector(
-  selectCategoriaState,
-  (state) => state.loading
-);
+export const selectCategoriasLoading = createSelector(selectCategoriaState, state => state.loading);
 
-export const selectCategoriasTotal = createSelector(
-  selectCategoriaState,
-  (state) => state.total
-);
+export const selectCategoriasTotal = createSelector(selectCategoriaState, state => state.total);

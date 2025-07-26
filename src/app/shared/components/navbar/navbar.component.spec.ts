@@ -54,7 +54,7 @@ describe('NavbarComponent', () => {
     expect(dispatchSpy).toHaveBeenCalledWith(toggleTheme());
   });
 
-  it('should select theme from store', (done) => {
+  it('should select theme from store', done => {
     component.theme$.subscribe(value => {
       expect(value).toBe('light');
       done();

@@ -13,9 +13,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       providers: [
         provideMockStore({
-          selectors: [
-            { selector: selectTheme, value: 'light' }
-          ]
+          selectors: [{ selector: selectTheme, value: 'light' }]
         })
       ]
     }).compileComponents();

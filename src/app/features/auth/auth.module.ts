@@ -17,7 +17,7 @@ import { SharedModule } from '@app/shared/shared.module';
     AuthRoutingModule,
     SharedModule,
     StoreModule.forFeature('auth', authReducer),
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([AuthEffects])
   ],
   providers: [AuthService]
 })

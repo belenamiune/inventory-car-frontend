@@ -35,8 +35,8 @@ export class ProductoFormComponent implements OnChanges {
   onSubmit() {
     if (this.form.invalid) return;
     this.guardar.emit({
-        ...(this.producto?._id ? { _id: this.producto._id } : {}),
-        ...this.form.value
+      ...(this.producto?._id ? { _id: this.producto._id } : {}),
+      ...this.form.value
     } as unknown as Producto);
   }
 

@@ -25,7 +25,7 @@ describe('DetalleComponent', () => {
   };
 
   const mockMovimientos: Movimiento[] = [
-    { productoId: 'm1', tipo: 'alta', fecha: new Date().toISOString(), cantidad: 5 },
+    { productoId: 'm1', tipo: 'alta', fecha: new Date().toISOString(), cantidad: 5 }
   ];
 
   beforeEach(async () => {
@@ -68,7 +68,7 @@ describe('DetalleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('debería cargar producto desde el servicio si no está en el store', (done) => {
+  it('debería cargar producto desde el servicio si no está en el store', done => {
     const productoMock = { ...mockProducto };
     productosService.getById.and.returnValue(of(productoMock));
     movimientosService.getByProductoId.and.returnValue(of([]));
@@ -91,8 +91,14 @@ describe('DetalleComponent', () => {
     expect(movimientosService.getByProductoId).toHaveBeenCalledWith('1');
   });
 
-  it('debería usar el producto del store si está presente', (done) => {
-    const productoEnStore: Producto = { _id: '1', nombre: 'Del Store', categorias: [], precio: 0, stock: 0 };
+  it('debería usar el producto del store si está presente', done => {
+    const productoEnStore: Producto = {
+      _id: '1',
+      nombre: 'Del Store',
+      categorias: [],
+      precio: 0,
+      stock: 0
+    };
 
     store.overrideSelector(selectAllProductos, [productoEnStore]);
     store.refreshState();

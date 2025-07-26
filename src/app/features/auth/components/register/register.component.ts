@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { register,  selectAuthLoading, selectAuthError } from '@features/auth/store';
+import { register, selectAuthLoading, selectAuthError } from '@features/auth/store';
 
 @Component({
   selector: 'app-register',

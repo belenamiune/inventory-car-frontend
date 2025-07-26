@@ -23,9 +23,7 @@ describe('DashboardComponent', () => {
       declarations: [DashboardComponent],
       providers: [
         provideMockStore({
-          selectors: [
-            { selector: selectCategorias, value: mockCategorias }
-          ]
+          selectors: [{ selector: selectCategorias, value: mockCategorias }]
         })
       ]
     }).compileComponents();
@@ -34,7 +32,7 @@ describe('DashboardComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.inject(Store) as MockStore;
     dispatchSpy = spyOn(store, 'dispatch').and.callThrough();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
   });
 
   it('should create', () => {

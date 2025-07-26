@@ -32,7 +32,7 @@ export const categoriasReducer = createReducer(
     loading: false,
     error
   })),
-    on(CategoriaActions.loadPaginatedCategorias, state => ({
+  on(CategoriaActions.loadPaginatedCategorias, state => ({
     ...state,
     loading: true
   })),
@@ -48,21 +48,20 @@ export const categoriasReducer = createReducer(
     error
   })),
   on(CategoriaActions.createCategoriaSuccess, (state, { categoria }) => ({
-  ...state,
-  categorias: [categoria, ...state.categorias],
-  loading: false
-})),
+    ...state,
+    categorias: [categoria, ...state.categorias],
+    loading: false
+  })),
 
-on(CategoriaActions.updateCategoriaSuccess, (state, { categoria }) => ({
-  ...state,
-  categorias: state.categorias.map(c => (c._id === categoria._id ? categoria : c)),
-  loading: false
-})),
+  on(CategoriaActions.updateCategoriaSuccess, (state, { categoria }) => ({
+    ...state,
+    categorias: state.categorias.map(c => (c._id === categoria._id ? categoria : c)),
+    loading: false
+  })),
 
-on(CategoriaActions.deleteCategoriaSuccess, (state, { id }) => ({
-  ...state,
-  categorias: state.categorias.filter(c => c._id !== id),
-  loading: false
-}))
+  on(CategoriaActions.deleteCategoriaSuccess, (state, { id }) => ({
+    ...state,
+    categorias: state.categorias.filter(c => c._id !== id),
+    loading: false
+  }))
 );
-

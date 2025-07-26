@@ -49,8 +49,8 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPage(0);
-     this.store.dispatch(loadCategorias())
-    }
+    this.store.dispatch(loadCategorias());
+  }
 
   loadPage(offset: number) {
     this.store.dispatch(
@@ -105,7 +105,6 @@ export class ListadoComponent implements OnInit {
   }
 
   confirmarEliminar(producto: Producto) {
-
     this.confirmationService.confirm({
       message: `¿Estás segura de eliminar "${producto.nombre}"?`,
       acceptLabel: 'Eliminar',

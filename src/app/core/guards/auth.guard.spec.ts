@@ -13,11 +13,7 @@ describe('AuthGuard', () => {
     const routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
-      providers: [
-        AuthGuard,
-        provideMockStore(),
-        { provide: Router, useValue: routerMock }
-      ]
+      providers: [AuthGuard, provideMockStore(), { provide: Router, useValue: routerMock }]
     });
 
     guard = TestBed.inject(AuthGuard);
@@ -29,7 +25,7 @@ describe('AuthGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  it('should return true if token exists in store', (done) => {
+  it('should return true if token exists in store', done => {
     store.overrideSelector(selectAuthToken, '1234');
 
     guard.canActivate().subscribe(result => {
@@ -39,7 +35,7 @@ describe('AuthGuard', () => {
     });
   });
 
-  it('should return true if token exists in localStorage', (done) => {
+  it('should return true if token exists in localStorage', done => {
     store.overrideSelector(selectAuthToken, null);
     spyOn(localStorage, 'getItem').and.returnValue('abcd');
 
@@ -50,7 +46,7 @@ describe('AuthGuard', () => {
     });
   });
 
-  it('should return false and navigate to login if no token', (done) => {
+  it('should return false and navigate to login if no token', done => {
     store.overrideSelector(selectAuthToken, null);
     spyOn(localStorage, 'getItem').and.returnValue(null);
 

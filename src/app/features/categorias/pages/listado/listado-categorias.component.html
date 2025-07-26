@@ -49,10 +49,12 @@
 
   <!-- Tabla de categorías -->
   <div class="mt-4">
-    <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-5">Listado de Categorías</h2>
+    <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-5">
+      Listado de Categorías
+    </h2>
 
     <p-table
-      class="animate-fade-in min-w-full mt-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
+      class="animate-fade-in min-w-full mt-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100  border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
       [value]="(categorias$ | async) || []"
       [paginator]="true"
       [rows]="rows"
@@ -98,13 +100,13 @@
 
   <!-- Modal -->
   <app-categoria-form
-  [visible]="modalVisible"
-  [categoria]="categoriaSeleccionada"
-  [categorias]="(categorias$ | async) || []"
-  (cerrar)="cerrarModal()"
-  (guardar)="guardarCategoria($event)">
-</app-categoria-form>
-
+    [visible]="modalVisible"
+    [categoria]="categoriaSeleccionada"
+    [categorias]="(categorias$ | async) || []"
+    (cerrar)="cerrarModal()"
+    (guardar)="guardarCategoria($event)"
+  >
+  </app-categoria-form>
 
   <p-confirmDialog></p-confirmDialog>
 </div>

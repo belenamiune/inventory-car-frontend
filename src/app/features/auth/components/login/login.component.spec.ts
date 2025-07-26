@@ -73,7 +73,7 @@ describe('LoginComponent', () => {
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/auth/register']);
   });
 
-  it('should expose loading$ and error$', (done) => {
+  it('should expose loading$ and error$', done => {
     component.loading$.subscribe(val => {
       expect(val).toBe(false);
       done();

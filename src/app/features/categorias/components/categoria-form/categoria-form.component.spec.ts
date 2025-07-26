@@ -8,16 +8,16 @@ describe('CategoriaFormComponent', () => {
   let component: CategoriaFormComponent;
   let fixture: ComponentFixture<CategoriaFormComponent>;
   @Component({
-  selector: 'p-dropdown',
-  template: '',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MockDropdownComponent),
-      multi: true
-    }
-  ]
-})
+    selector: 'p-dropdown',
+    template: '',
+    providers: [
+      {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => MockDropdownComponent),
+        multi: true
+      }
+    ]
+  })
   class MockDropdownComponent implements ControlValueAccessor {
     writeValue() {}
     registerOnChange() {}
@@ -28,7 +28,7 @@ describe('CategoriaFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CategoriaFormComponent, MockDropdownComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CategoriaFormComponent);
