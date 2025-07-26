@@ -105,10 +105,25 @@
           </td>
 
           <td>
-            <span *ngIf="producto.categorias?.length; else sinCategoria">
-               {{ getNombresCategorias(producto.categorias) }}
-            </span>
-            <ng-template #sinCategoria>---</ng-template>
+            <ng-container *ngIf="producto.categorias?.length > 0; else sinCategoria">
+              <div class="flex flex-wrap gap-1">
+                <span
+                  *ngFor="let cat of producto.categorias"
+                  [ngClass]="[
+                    getCategoriaStyles(cat.nombre).bg,
+                    getCategoriaStyles(cat.nombre).text,
+                    'p-tag p-tag-rounded text-xs'
+                  ]"
+                >
+                  <i class="{{ getCategoriaStyles(cat.nombre).icon }} mr-1"></i>
+                  {{ cat.nombre }}
+                </span>
+              </div>
+            </ng-container>
+
+            <ng-template #sinCategoria>
+              <span class="text-gray-400 text-sm">---</span>
+            </ng-template>
           </td>
 
           <td>$ {{ producto.precio }}</td>

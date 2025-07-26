@@ -20,6 +20,7 @@ import { Producto } from '@features/productos/models/producto.model';
 import { Categoria } from '@shared/models/categoria.model';
 import { selectCategorias } from '@app/features/categorias/store/categorias.selectors';
 import { loadCategorias } from '@app/features/categorias/store';
+import { getCategoriaStyles } from '@shared/utils/categoria-util';
 
 @Component({
   selector: 'app-productos-listado',
@@ -40,6 +41,7 @@ export class ListadoComponent implements OnInit {
   categorias: Categoria[] = [];
   productoSeleccionado: Producto | null = null;
   modalVisible = false;
+  getCategoriaStyles = getCategoriaStyles;
 
   constructor(
     private store: Store,
@@ -54,7 +56,7 @@ export class ListadoComponent implements OnInit {
 
   getNombresCategorias(categorias: Categoria[]): string {
     return categorias.map(c => c.nombre).join(', ');
-    }
+  }
 
   loadPage(offset: number) {
     this.store.dispatch(

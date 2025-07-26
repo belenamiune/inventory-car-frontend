@@ -46,11 +46,11 @@
       ></button>
     </div>
     <button
-        pButton
-        icon="pi pi-folder-open"
-        class="p-button-md bg-green-600 border-green-600 hover:bg-green-700 hover:border-green-700 text-white text-center"
-        [routerLink]="['/categorias/arbol']"
-      ></button>
+      pButton
+      icon="pi pi-folder-open"
+      class="p-button-md bg-green-600 border-green-600 hover:bg-green-700 hover:border-green-700 text-white text-center"
+      [routerLink]="['/categorias/arbol']"
+    ></button>
   </div>
 
   <!-- Tabla de categorías -->
@@ -60,7 +60,7 @@
     </h2>
 
     <p-table
-      class="animate-fade-in min-w-full mt-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100  border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
+      class="animate-fade-in min-w-full mt-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
       [value]="(categorias$ | async) || []"
       [paginator]="true"
       [rows]="rows"
@@ -81,7 +81,18 @@
 
       <ng-template pTemplate="body" let-categoria>
         <tr class="border-b border-gray-200 dark:border-gray-700">
-          <td>{{ categoria.nombre }}</td>
+          <td>
+            <span
+              [ngClass]="[
+                getCategoriaStyles(categoria.nombre).bg,
+                getCategoriaStyles(categoria.nombre).text,
+                'p-tag p-tag-rounded text-xs'
+              ]"
+            >
+              <i class="{{ getCategoriaStyles(categoria.nombre).icon }} mr-1"></i>
+              {{ categoria.nombre }}
+            </span>
+          </td>
           <td>{{ categoria.padre?.nombre || '---' }}</td>
 
           <td class="text-center">

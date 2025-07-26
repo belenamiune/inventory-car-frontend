@@ -15,6 +15,7 @@ import {
   selectCategoriasLoading,
   selectCategoriasTotal
 } from '@features/categorias/store/categorias.selectors';
+import { getCategoriaStyles } from '@app/shared/utils/categoria-util';
 
 @Component({
   selector: 'app-categorias-listado',
@@ -26,6 +27,7 @@ export class ListadoCategoriasComponent implements OnInit {
     .pipe(map(c => c || []));
   loading$: Observable<boolean> = this.store.select(selectCategoriasLoading);
   total$: Observable<number> = this.store.select(selectCategoriasTotal);
+  getCategoriaStyles = getCategoriaStyles;
 
   nombre = '';
   padre = '';

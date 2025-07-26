@@ -122,7 +122,7 @@ describe('ProductoFormComponent', () => {
         precio: 2000 as any,
         stock: 30 as any,
         imagenUrl: '',
-        categorias: []
+        categorias: ['x' as any]
       });
 
       component.onSubmit();
@@ -147,7 +147,7 @@ describe('ProductoFormComponent', () => {
         precio: 1800 as any,
         stock: 10 as any,
         imagenUrl: '',
-        categorias: []
+        categorias: ['Repuestos' as any]
       });
 
       component.onSubmit();
@@ -158,7 +158,7 @@ describe('ProductoFormComponent', () => {
         precio: 1800,
         stock: 10,
         imagenUrl: '',
-        categorias: []
+        categorias: ['Repuestos' as any]
       });
     });
   });

@@ -7,7 +7,7 @@ import { Movimiento } from '@shared/models/movimiento.model';
 describe('MovimientosService', () => {
   let service: MovimientosService;
   let httpMock: HttpTestingController;
-  const baseUrl = `${environment.apiUrl}/productos`;
+  const baseUrl = `${environment.apiUrl}/movimientos`;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('MovimientosService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call GET /productos/:productoId and return movimientos', () => {
+  it('should call GET /movimientos/:productoId and return movimientos', () => {
     const productoId = 'abc123';
     const mockResponse: Movimiento[] = [
       { productoId: '1', tipo: 'entrada', cantidad: 10, fecha: '2024-01-01' },
