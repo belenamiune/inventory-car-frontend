@@ -53,6 +53,10 @@ ng serve
 ![Edicion](imagenes/edicion.png)
 ![Eliminacion](imagenes/eliminacion.png)
 ![Detalle](imagenes/detalle.png)
+![Categorias](imagenes/categorias.png)
+![CrearCategoria](imagenes/crearcategoria.png)
+![Editarcategoria](imagenes/edicioncategoria.png)
+![EliminacionCategoria](imagenes/eliminacioncategoria.png)
 
 ## Repositorios del proyecto
 
