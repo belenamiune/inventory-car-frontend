@@ -57,7 +57,7 @@ ng serve
 ![CrearCategoria](imagenes/crearcategoria.png)
 ![Editarcategoria](imagenes/edicioncategoria.png)
 ![EliminacionCategoria](imagenes/eliminacioncategoria.png)
-
+![ArbolDeCategorias](imagenes/arbol.png)
 ## Repositorios del proyecto
 
 Este proyecto forma parte de un sistema completo
